@@ -69,3 +69,55 @@ def btod(b):
 	print(d)
 b=int(input('Enter binary number: '))
 btod(b)
+
+# Calculate SI. Default values for rate and time = 10% and 2 years respectively.
+def interest(p,t=2,r=10):
+    return ((p*r*t)/100)
+p=eval(input('Enter principal: '))
+ch=input('Do you want to enter rate and time (y/N): ')
+if ch=='y' or ch=='Y':
+    r=eval(input('Enter rate: '))
+    t=eval(input('Enter time: '))
+    print('Simple Interest:',interest(p,r,t))
+else:
+    print('Simple Interest:',interest(p))
+
+# Assess two values and return sum, difference, product and quotient.
+def calculator(a,b):
+    return (a+b),(a-b),(a*b),(a/b)
+a=eval(input('Enter number 1: '))
+b=eval(input('Enter number 2: '))
+s,d,p,q=calculator(a,b)
+print('Sum:',s,'\nDifference:',d,'\nProduct:',p,'\nQuotient:',q)
+
+def multiple(n):
+    return n,(n*2),(n*3),(n*4),(n*5)
+n=eval(input('Enter number: '))
+print(multiple(n))
+
+# Accept variable length argument and count number of odd and even numbers and returns both values
+## Method 1
+def count(*n):
+    ecount,ocount=0,0
+    for i in n:
+        if i%2==0:
+            ecount+=1
+        if i%2!=0:
+            ocount+=1
+    return ecount,ocount
+print('Number of even and odd numbers:',count(12,15,664,44,6,64,64,6,8,5,45,4657,6541,651))
+## Method 2
+def count(l):
+	ocount,ecount=0,0
+	for i in l:
+		if i%2:
+			ocount+=1
+		else:
+			ecount+=1
+	return(ocount,ecount)
+l=[]
+n=int(input('Enter number of elements for list: '))
+for i in range(n):
+	l.append(int(input('Enter element: ')))
+print(l)
+print(count(l))
