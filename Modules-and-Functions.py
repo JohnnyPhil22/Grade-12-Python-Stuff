@@ -115,7 +115,7 @@ def count(l):
 		else:
 			ecount+=1
 	return(ocount,ecount)
-l=[]
+l=[] 
 n=int(input('Enter number of elements for list: '))
 for i in range(n):
 	l.append(int(input('Enter element: ')))
