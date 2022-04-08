@@ -121,3 +121,15 @@ for i in range(n):
 	l.append(int(input('Enter element: ')))
 print(l)
 print(count(l))
+
+# Take one positive integer and tell if it is odd or even
+def chkodd(n):
+    if n<=0:
+        print('Enter positive value')
+    else:
+        if n%2==0:
+            print('Even number')
+        else:
+            print('Odd number')
+n=int(input('Enter number: '))
+chkodd(n)
