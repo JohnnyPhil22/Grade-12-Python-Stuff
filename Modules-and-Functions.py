@@ -133,3 +133,26 @@ def chkodd(n):
             print('Odd number')
 n=int(input('Enter number: '))
 chkodd(n)
+
+# Input list and reverse
+def rev(l):
+    return l[::-1]
+l=eval(input('Enter list: '))
+print('Reversed list:',rev(l))
+
+# Input two lists and put both together into new list
+def append(l1,l2):
+    l3=l1+l2
+    return l3
+l1=eval(input('Enter list 1: '))
+l2=eval(input('Enter list 2: '))
+print('Combined list:',append(l1,l2))
+
+# Dictionary with key as name and value as mark. Increase mark by 5 if mark is between 90 to 95.
+def change(d):
+    for j in d:
+        if 90<d[j]<95:
+            d[j]+=5
+    return d
+d=eval(input('Enter dictionary: '))
+print(change(d))
