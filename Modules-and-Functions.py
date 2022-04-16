@@ -156,3 +156,86 @@ def change(d):
     return d
 d=eval(input('Enter dictionary: '))
 print(change(d))
+
+# Binary Search
+def search2(l,low,high,x):
+    if high>=low:
+        mid=(high+low)//2
+        if l[mid]==x:
+            return mid
+        elif l[mid] > x:
+            return search2(l,low,mid-1,x)
+        else:
+            return search2(l,mid+1,high,x)
+    else:
+        return -1
+l=eval(input('Enter list: '))
+x=eval(input('Enter number: '))
+result=search2(l,0,len(l)-1,x)
+if result!=-1:
+    print(x,"is at index",str(result))
+else:
+    print(x,"not in list")
+
+# Swap two consecutive elements in list
+def swap2(l):
+    for i in range(len(l)):
+        if i%2==0:
+            l[i],l[i+1]=l[i+1],l[i]
+    return l
+l=eval(input('Enter list: '))
+print('New list:',swap2(l))
+
+# Merge two lists (first in ascending order and second in descending order)
+a=eval(input('Enter list 1: '))
+if sorted(a)!=a:
+    print('Enter list in ascending order')
+else:
+    b=eval(input('Enter list 2: '))
+    if sorted(b,reverse=True)!=b:
+        print('Enter list in descending order')   
+    else:
+        c=a+b
+        print('Merged list in descending order:',sorted(c,reverse=True))
+
+# Bubble Sort
+def sortingbubble(l):
+    for i in range(len(l)):
+        for j in range(0,len(l)-i-1):
+            if l[j]>l[j+1]:
+                l[j],l[j+1]=l[j+1],l[j]
+    return l
+l=eval(input('Enter list: '))
+print('Sorted list:',sortingbubble(l))
+
+# Selection Sort
+def sortingselect(l,s):
+    for step in range(s):
+        min=step
+        for i in range(step+1,s):
+            if l[i]<l[min]:
+                min=i
+        l[step],l[min]=l[min],l[step]
+    return l
+l=eval(input('Enter elements: '))
+print('Sorted list:',sortingselect(l,len(l)))
+
+# Insertion Sort
+def sortinginsertion(l):
+    for i in range(1,len(l)):
+        j=i
+        while l[j-1]>l[j] and j>0:
+            l[j-1],l[j]=l[j],l[j-1]
+            j-=1
+    return l
+l=eval(input('Enter list: '))
+print('Sorted list:',sortinginsertion(l))
+
+# Move elements divisible by 5 to end of list
+def move(l):
+    for i in l:
+        if i%5==0:
+            l.append(l.pop(l.index(i)))
+    return l
+l=eval(input('Enter list: '))
+print('New list:',move(l))
