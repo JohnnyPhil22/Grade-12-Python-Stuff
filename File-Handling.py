@@ -105,11 +105,12 @@ for i in data:
     count+=1
 print('File size:',count,'lines')
 
-# Create new file in program and enter three names
+# Create new file in program and enter 'n' names
 namefile=open('names.txt','w')
-for i in range(3):
-    n=input('Enter name to enter: ')
-    namefile.write(n+'\n')
+n=int(input('Enter number of names: '))
+for i in range(n):
+    i=input('Enter name to enter: ')
+    namefile.write(i+'\n')
 namefile.flush()
 namefile.close()
 namefile=open('names.txt','r')
