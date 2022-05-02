@@ -107,11 +107,8 @@ print('File size:',count,'lines')
 
 # Create new file in program and enter 'n' names
 namefile=open('names.txt','w')
-n=int(input('Enter number of names: '))
-for i in range(n):
-    i=input('Enter name to enter: ')
-    namefile.write(i+'\n')
-namefile.flush()
+lon=eval(input('Enter list of names: '))
+namefile.writelines(lon)
 namefile.close()
 namefile=open('names.txt','r')
 print(namefile.read())
