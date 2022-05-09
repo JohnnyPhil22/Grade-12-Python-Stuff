@@ -81,6 +81,7 @@ for i in data :
             content+=j
 print('File size without EOL and blank lines:',len(content),'characters')
 poem.close()
+
 # Calculate size of file in bytes and number of lines.
 poem=open('poem.txt','r')
 data=poem.readlines()
