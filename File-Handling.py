@@ -236,7 +236,7 @@ print(f.read())
 f=open('file.txt','r')
 print(f.read(10))
 f.close()
-# Read one file
+# Read one line
 f=open('file.txt','r')
 print(f.readline())
 f.close()
