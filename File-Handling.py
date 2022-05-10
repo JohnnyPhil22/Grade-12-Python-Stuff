@@ -195,3 +195,44 @@ def countae():
         if l[0]=='A' or l[0]=='E':
             print(l)
 countae()
+
+# Write a program to print fie containing serial number, name, author and price of book
+f=open('file.txt','w')
+l=[]
+n=int(input('Enter number of books: '))
+for i in range(n):
+    name=input('Enter book name: ')
+    a=input('Enter author name: ')
+    p=input('Enter book price: ')
+    l.append(str(i+1)+': '+name+' - '+a+' - '+p+'\n')
+f.writelines(l)
+f.close()
+f=open('file.txt','r')
+print(f.read())
+
+# Add roll number, name and marks to dictionary
+f=open('file.txt','w')
+d={}
+n=int(input('Enter number of students: '))
+for i in range(n):
+    r=input('Enter roll number: ')
+    name=input('Enter name: ')
+    m=input('Enter marks: ')
+    d[str(r+': '+name+' - '+m+'\n')]=i
+f.writelines(d)
+f.close()
+f=open('file.txt','r')
+print(f.read())
+
+# Read only 10 chars
+f=open('file.txt','r')
+print(f.read(10))
+f.close()
+# Read one file
+f=open('file.txt','r')
+print(f.readline())
+f.close()
+# Read complete file
+f=open('file.txt','r')
+print(f.read())
+f.close()
