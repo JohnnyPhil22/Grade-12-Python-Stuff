@@ -25,26 +25,29 @@ earthday.close()
 
 # Read a file's first 30 bytes and print it
 poem=open('poem.txt','r')
-print('Q1')
 print(poem.read(30))
 poem.close()
 
 # Read 10 bytes and then read again 5 bytes
 poem=open('poem.txt','r')
-print('Q2')
 print(poem.read(10))
 print(poem.read(5))
 poem.close()
 
+# Read n bytes and then read again x bytes till end of file
+poem=open('poem.txt','r')
+n=int(input('Enter number of bytes to read: '))
+print(poem.read(n))
+print(poem.read())
+poem.close()
+
 # Read entire file
 poem=open('poem.txt','r')
-print('Q3')
 print(poem.read())
 poem.close()
 
 # Read file's first three lines (line by line)
 poem=open('poem.txt','r')
-print('Q4')
 for i in range(3):
     print(poem.readline())
 poem.close()
@@ -80,6 +83,11 @@ for i in data :
         if j.isalnum():
             content+=j
 print('File size without EOL and blank lines:',len(content),'characters')
+poem.close()
+
+# Read complete file in list
+poem=open('poem.txt','r')
+print(poem.readlines())
 poem.close()
 
 # Calculate size of file in bytes and number of lines.
