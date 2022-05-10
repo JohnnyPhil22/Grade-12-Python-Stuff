@@ -204,7 +204,7 @@ def countae():
             print(l)
 countae()
 
-# Write a program to print fie containing serial number, name, author and price of book
+# Print file containing serial number, name, author and price of book
 f=open('file.txt','w')
 l=[]
 n=int(input('Enter number of books: '))
