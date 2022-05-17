@@ -280,7 +280,7 @@ f=open('myb.dat','rb')
 content=load(f)
 print(content)
 
-# Write roll number, name and mark from user to binary file (Program get data from user and write onto file as long as necessary)
+# Write roll number, name and mark from user to binary file as long as needed
 from pickle import *
 s={}
 n=int(input('Enter number of entries: '))
