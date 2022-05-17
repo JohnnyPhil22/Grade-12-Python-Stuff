@@ -1,3 +1,7 @@
+###########################################
+############### TEXT FILES ################
+###########################################
+
 earthday=open('blebleble.txt','r')
 # Read entire file
 print(earthday.read())
@@ -244,3 +248,20 @@ f.close()
 f=open('file.txt','r')
 print(f.read())
 f.close()
+
+###########################################
+############## BINARY FILES ###############
+###########################################
+
+# Write roll number, name, gender and marks of student in binary file named myb.dat using dump()
+from pickle import *
+s={}
+r=input('Enter student roll number: ')
+n=input('Enter student name: ')
+g=input('Enter student gender: ')
+m=input('Enter student marks: ')
+s[(r+' '+n+' '+g+' '+m)]=1
+dump(s,open('myb.dat','wb'))
+f=open('myb.dat','rb')
+content=load(f)
+print(content)
