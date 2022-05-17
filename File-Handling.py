@@ -279,3 +279,18 @@ dump(emp,open('emp.dat','wb'))
 f=open('myb.dat','rb')
 content=load(f)
 print(content)
+
+# Write roll number, name and mark from user to binary file (Program get data from user and write onto file as long as necessary)
+from pickle import *
+s={}
+n=int(input('Enter number of entries: '))
+for i in range(n):
+    r=input('Enter student roll number: ')
+    n=input('Enter student name: ')
+    g=input('Enter student gender: ')
+    m=input('Enter student marks: ')
+    s[(r+' '+n+' '+g+' '+m)]=i+1
+dump(s,open('myb.dat','wb'))
+f=open('myb.dat','rb')
+content=load(f)
+print(content)
