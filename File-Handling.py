@@ -265,3 +265,18 @@ dump(s,open('myb.dat','wb'))
 f=open('myb.dat','rb')
 content=load(f)
 print(content)
+
+# Binary file called emp.dat and write into it the employee details, available as dictionaries.
+from pickle import *
+emp=[]
+ans='y'
+while ans=='y':
+    no=int(input('Enter employee number: '))
+    n=input('Enter employee name: ')
+    s=int(input('Enter employee salary: '))
+    emp.append([no,n,s])
+    ans=input('Add more? ')
+dump(emp,open('emp.dat','wb'))
+f=open('myb.dat','rb')
+content=load(f)
+print(content)
