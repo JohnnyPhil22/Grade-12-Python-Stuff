@@ -268,8 +268,7 @@ print(content)
 
 # Binary file called emp.dat and write into it the employee details, available as dictionaries.
 from pickle import *
-emp=[]
-ans='y'
+emp,ans=[],'y'
 while ans=='y':
     no=int(input('Enter employee number: '))
     n=input('Enter employee name: ')
