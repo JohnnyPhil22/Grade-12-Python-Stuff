@@ -294,3 +294,34 @@ dump(s,open('myb.dat','wb'))
 f=open('myb.dat','rb')
 content=load(f)
 print(content)
+
+# Create a binary file called myfile.bin with 2 lines and display all chars until before 'o'
+import pickle
+newstr=''
+with open ('myfile.bin','wb') as f:
+    data=eval(input('Enter data: '))
+    pickle.dump(data,f)
+with open ('myfile.bin','rb') as f:
+    content=pickle.load(f)
+    for i in content:
+        if i=='o':
+            break
+        else:
+            for j in i:
+                if j=='o':
+                    break
+                elif j!='o':
+                    newstr+=j
+print(newstr)
+
+# Accept n employee records and append to binary file tv. Read the records and display on screen.
+import pickle
+with open ('tv.bin','wb') as f:
+    n=int(input('Enter number of employees: '))
+    for i in range(n):
+        ed=eval(input('Enter employee data: '))
+        pickle.dump(ed,f)
+with open ('tv.bin','rb') as f:
+    print(pickle.load(f))
+
+# Create binary file called student.bin containing roll number, name and marks of students as dictionary. Search for records with roll numbers 12 or 14. If found, display records.
