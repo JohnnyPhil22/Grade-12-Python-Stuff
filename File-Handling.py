@@ -325,3 +325,20 @@ with open ('tv.bin','rb') as f:
     print(pickle.load(f))
 
 # Create binary file called student.bin containing roll number, name and marks of students as dictionary. Search for records with roll numbers 12 or 14. If found, display records.
+import pickle
+n=int(input('Enter number of students: '))
+d,l={},[]
+with open ('student.bin','wb') as f:
+    for i in range(n):
+        rn=int(input('Enter roll number: '))
+        name=input('Enter name: ')
+        l.append(name)
+        m=eval(input('Enter marks: '))
+        l.append(m)
+        d[rn]=l
+    pickle.dump(d,f)
+with open ('student.bin','rb') as f:
+    sd=pickle.load(f)
+    for j in sd:
+        if j==12 or j==14:
+            print(j,sd[j])
