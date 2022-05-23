@@ -249,6 +249,19 @@ f=open('file.txt','r')
 print(f.read())
 f.close()
 
+# Create a text file and find most commonly occurring word(s)
+with open ('file.txt','w+') as a:
+    n=eval(input("Enter the string here: "))
+    a.write(n)
+with open ('file.txt','r') as a:
+    c=a.read().split(' ')
+b,h='',0
+for i in c:
+    if i!=' ' and n.count(i)>h:
+        b=i
+        h=n.count(i)
+print('Most common element:',b)
+
 ###########################################
 ############## BINARY FILES ###############
 ###########################################
