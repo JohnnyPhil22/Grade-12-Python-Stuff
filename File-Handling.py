@@ -355,3 +355,15 @@ with open ('student.bin','rb') as f:
     for j in sd:
         if j==12 or j==14:
             print(j,sd[j])
+
+# Check file position after read and read last 15 bytes of file
+import pickle
+with open('poem.txt','r') as f:
+    content=f.read()
+with open('poem.bin','wb') as fnew:
+    pickle.dump(content,fnew)
+with open('poem.bin','rb') as fnew:
+    print(pickle.load(fnew))
+    print(fnew.tell())
+    fnew.seek(-15,2)
+    print(fnew.tell())
