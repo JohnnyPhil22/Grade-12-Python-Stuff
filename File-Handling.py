@@ -549,3 +549,76 @@ with open('poem.bin','rb') as fnew:
     print(fnew.tell())
     fnew.seek(-15,2)
     print(fnew.tell())
+
+# Write a menu driven program with user defined functions to create a file, search a particular record, delete a particular record, update a particular record and exit
+import pickle
+def create():
+    with open('file.bin','wb') as f:
+        data=eval(input('Enter data to add (as a nested list): '))
+        pickle.dump(data,f)
+    with open('file.bin','rb') as f:
+        print('File data:\n',pickle.load(f))
+
+def search():
+    en,emplst,f=eval(input('Enter employee number to search for: ')),[],False
+    with open('file.bin','rb') as f:
+        emplst=pickle.load(f)
+        for i in range(len(emplst)):
+            if emplst[i][0]==en:
+                print('Employee number:',emplst[i][0])
+                print('Employee name:',emplst[i][1])
+                print('Employee salary:',emplst[i][2])
+                f=True
+                break
+        else:
+            print('Employee records not found')
+
+def delete():
+    emplst=[]
+    with open('file.bin','rb') as f:
+        emplst=pickle.load(f)
+    f,en,emplst2=False,int(input('Enter employee number to delete: ')),[]
+    for i in range(len(emplst)):
+        if emplst[i][0]!=en:
+            emplst2.append(emplst[i])
+    with open('file.bin','wb') as f:
+        pickle.dump(emplst2,f)
+    with open('file.bin','rb') as f:
+        emplst=pickle.load(f)
+        print(emplst)
+
+def update():
+    en,emplst,f=eval(input('Enter employee number to update: ')),[],False
+    with open('file.bin','rb') as f:
+        emplst=pickle.load(f)
+        for i in range(len(emplst)):
+            if emplst[i][0]==en:
+                emplst[i][2]=int(input('Enter new employee salary: '))
+                f=True
+                break
+        else:
+            print('Employee records not found')
+    with open('file.bin','wb') as f:
+        pickle.dump(emplst,f)
+    with open('file.bin','rb') as f:
+        emplst=pickle.load(f)
+        print(emplst)
+
+opt='y'
+while opt in 'yY':
+    print('1. Create file\n2. Search a particlar record\n3. Delete a particular record\n4. Update a particular record')
+    ch=int(input('Enter option (1 to 4): '))
+    if ch==1:
+        create()
+    if ch==2:
+        create()
+        search()
+    if ch==3:
+        create()
+        delete()
+    if ch==4:
+        create()
+        update()
+    if 1>ch<4:
+        print('Please enter a valid option')
+    opt=input('Do you want to continue: ')
