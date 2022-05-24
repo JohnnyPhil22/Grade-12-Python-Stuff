@@ -262,7 +262,7 @@ for i in c:
         h=n.count(i)
 print('Most common element:',b)
 
-# Q2: Write a menu driven program to perform / manipulate a text file called as 'POETIC.TXT' containing n no. of lines. Use the following functions: (Create text file using the create function also after each function execute, call display function to display the contents of the file.)
+# Write a menu driven program to perform / manipulate a text file called as 'POETIC.TXT' containing n no. of lines. Use the following functions: (Create text file using the create function also after each function execute, call display function to display the contents of the file.)
 ## CREATE()
 def create():
     with open ('poetic.txt','w') as f:
@@ -409,6 +409,40 @@ while opt in 'yY':
     if 1>ch<10:
         print('Please enter a valid option')
     opt=input('Do you want to continue: ')
+
+# Read a text file line by line and display each word separated by a #.
+f=open('poetic.txt','r')
+for l in f:
+    w=l.split()
+    for i in w:
+        print(i,end='#')
+
+# Read a text file and display the number of vowels/consonants/uppercase/lowercase characters in the file.
+f=open('poetic.txt','r')
+content,countv,countc,countu,countl=f.read(),0,0,0,0
+print(content)
+for i in content:
+    for j in i:
+        if j in 'AEIOUaeiou':
+            countv+=1
+        if j in 'BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz':
+            countc+=1
+        if j.isupper():
+            countu+=1
+        if j.islower():
+            countl+=1
+print('Number of vowels:',countv,'\nNumber of consonants:',countc,'\nNumber of uppercase letters:',countu,'\nNumber of lowercase letters:',countl)
+
+# Remove all the lines that contain the character 'a' in a file and write it to another file.
+f,fnew=open('poetic.txt','r'),open('newfile.txt','w')
+content=f.readlines()
+print('Original contents:\n',content)
+for i in content:
+    if 'a' in i:
+        fnew.write(i)
+        content.remove(i)
+fnew=open('newfile.txt','r')
+print('Content of file with lines containing \'a\':\n',fnew.read())
 
 ###########################################
 ############## BINARY FILES ###############
