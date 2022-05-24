@@ -262,6 +262,154 @@ for i in c:
         h=n.count(i)
 print('Most common element:',b)
 
+# Q2: Write a menu driven program to perform / manipulate a text file called as 'POETIC.TXT' containing n no. of lines. Use the following functions: (Create text file using the create function also after each function execute, call display function to display the contents of the file.)
+## CREATE()
+def create():
+    with open ('poetic.txt','w') as f:
+        data=eval(input('Enter data: '))
+        f.write(data)
+
+## DISPLAY(): To display the complete contents of the file given by the user.
+def display():
+    f=open('poetic.txt','r')
+    print(f.read())
+
+## COUNTCHAR(): Read the text file and display the number of vowels / consonants / uppercase / lowercase characters in the file.
+def countchar():
+    f=open('poetic.txt','r')
+    content,countv,countc,countu,countl=f.read(),0,0,0,0
+    for i in content:
+        for j in i:
+            if j in 'AEIOUaeiou':
+                countv+=1
+            if j in 'BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz':
+                countc+=1
+            if j.isupper():
+                countu+=1
+            if j.islower():
+                countl+=1
+    print('Number of vowels:',countv,'\nNumber of consonants:',countc,'\nNumber of uppercase letters:',countu,'\nNumber of lowercase letters:',countl)
+
+## HASHSHOW(): Read the text file “POETIC.TXT” line by line and display each word separated by a #. 
+def hashshow():
+    f=open('poetic.txt','r')
+    for l in f:
+        w=l.split()
+        for i in w:
+            print(i,end='#')
+    print('\n')
+
+## COPY(): Copy all those lines which contains '#' to another file called “special.txt”
+def copy():
+    f=open('poetic.txt','r')
+    fnew=open('special.txt','w')
+    newstr=''
+    for i in f:
+        for j in i:
+            if j=='#':
+                newstr+=i
+    with open ('special.txt','w') as fnew:
+        fnew.write(newstr)
+    with open ('special.txt','r') as fnew:
+        content=fnew.read()
+    print('Contents in new file:\n',content)
+
+## REPLACE(): Replace a word with another user given word into another file called 'duplicate.txt' and display both files. 
+def replace():
+    with open('poetic.txt','r') as f:
+        content=f.read()
+        print('Contents of poetic.txt:',content)
+        w=input('Enter word to be replaced: ')
+        nw=input('Enter word to replace old word: ')
+    with open('duplicate.txt','w') as fnew:
+        newcontent=content.replace(w,nw)
+        fnew.write(newcontent)
+    with open('duplicate.txt','r') as fnew:
+        print('Contents of duplicate.txt:\n',fnew.read())
+
+## DELETE(): Deletes a given word in text file
+def delete():
+    with open('poetic.txt','r') as f:
+        content=f.read()
+    with open('poetic.txt','w') as f:
+        w=input('Enter word to remove: ')
+        content=content.replace(w,'')
+        f.write(content)
+    with open('poetic.txt','r') as f:
+        print(f.read())
+
+## COUNTEND(): Count the no. of lines ending with the character 'y' or 'i' (Do not take into consideration the case of the character) 
+def countend():
+    count=0
+    with open('poetic.txt','r') as f:
+        for i in f.readlines():
+            if i[-1]=='y' or i[-1]=='Y' or i[-1]=='i' or i[-1]=='I':
+                count+=1
+    print(count)
+
+## VOWEL(): Copies all words that starts with a vowel to another file called vowel.txt, display both the file content.
+def vowel():
+    with open(r'poetic.txt','r') as f:
+        print('Content in poetic.txt:\n',f.read())
+        data=f.readlines()
+        for i in data:
+            temp=i.split(' ')
+            for j in temp:
+                if j[0] in 'aeiouAEIOU':
+                    with open(r'vowel.txt','a') as fnew:
+                        fnew.write(j)
+                        fnew.write('\n')
+    with open('vowel.txt','r') as fnew:
+        print('Content in vowel.txt:\n',fnew.read())
+
+## CHANGE(): Replaces every space with “**” and display both files.
+def change():
+    with open('poetic.txt','r') as f:
+        content=f.read()
+    with open('poetic.txt','w') as f:
+        content=content.replace(' ','**')
+        f.write(content)
+    with open('poetic.txt','r') as f:
+        print(f.read())
+
+opt='y'
+while opt in 'yY':
+    print('1. Create file\n2. Display file\n3. Count characters\n4. Show each word separated by a hash\n5. Copy all lines containing a hash to another file\n6. Replace a word with another word into another file\n7. Delete a word\n8. Count the no. of lines ending with y or i\n9. Copies all words that starts with a vowel to another file\n10. Replaces every space with \'**\'')
+    ch=int(input('Enter option (1 to 10): '))
+    if ch==1:
+        create()
+        display()
+    if ch==2:
+        create()
+        display()
+    if ch==3:
+        create()
+        countchar()
+    if ch==4:
+        create()
+        hashshow()
+    if ch==5:
+        create()
+        copy()
+    if ch==6:
+        create()
+        replace()
+    if ch==7:
+        create()
+        delete()
+    if ch==8:
+        create()
+        countend()
+    if ch==9:
+        create()
+        vowel()
+    if ch==10:
+        create()
+        change()
+    if 1>ch<10:
+        print('Please enter a valid option')
+    opt=input('Do you want to continue: ')
+
 ###########################################
 ############## BINARY FILES ###############
 ###########################################
