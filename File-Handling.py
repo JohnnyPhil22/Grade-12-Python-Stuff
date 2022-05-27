@@ -661,3 +661,4 @@ with open('file.bin','rb') as f:
             print('Item name:',content[i][1])
             print('Item quantity:',content[i][2])
             print('Item price:',content[i][3])
+            print('Item amount:',int(content[i][2])*int(content[i][3]))
