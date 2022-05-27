@@ -444,6 +444,21 @@ for i in content:
 fnew=open('newfile.txt','r')
 print('Content of file with lines containing \'a\':\n',fnew.read())
 
+# Accept string/sentences from the user till the user enters “END” to. Save the data in a text file and then display only those sentences which begin with an uppercase alphabet.
+with open('file.txt','w') as f:
+    while True:
+        s=eval(input("Enter data (to quit enter END): "))
+        if s=="END":
+            break
+        else:
+            f.write(s+"\n")
+print('Lines beginning with uppercase chars:\n')
+with open('file.txt','r') as f:
+    content=f.readlines()
+    for i in content:
+        if i[0].isupper():
+            print(i)
+
 ###########################################
 ############## BINARY FILES ###############
 ###########################################
@@ -623,17 +638,26 @@ while opt in 'yY':
         print('Please enter a valid option')
     opt=input('Do you want to continue: ')
 
-# Accept string/sentences from the user till the user enters “END” to. Save the data in a text file and then display only those sentences which begin with an uppercase alphabet.
-with open('file.txt','w') as f:
-    while True:
-        s=eval(input("Enter data (to quit enter END): "))
-        if s=="END":
-            break
-        else:
-            f.write(s+"\n")
-print('Lines beginning with uppercase chars:\n')
-with open('file.txt','r') as f:
-    content=f.readlines()
-    for i in content:
-        if i[0].isupper():
-            print(i)
+# Write a program to enter item number (int), item name (str), quantity (int) and price (float) in a binary file: 
+import pickle
+with open('file.bin','wb') as f:
+    l1,l2=[],[]
+    n=int(input('Enter number of items: '))
+    for i in range(n):
+        itemno=i+1
+        itemname=input('Enter item name: ')
+        q=int(input('Enter item quantity: '))
+        p=float(input('Enter item price: '))
+        l2=[itemno,itemname,q,p]
+        l1.append(l2)
+    print(l1)
+    pickle.dump(l1,f)
+with open('file.bin','rb') as f:
+    itemnumber=int(input('Enter item number to print details for: '))
+    content=pickle.load(f)
+    for i in range(len(content)):
+        if itemnumber==content[i][0]:
+            print('Item number:',content[i][0])
+            print('Item name:',content[i][1])
+            print('Item quantity:',content[i][2])
+            print('Item price:',content[i][3])
