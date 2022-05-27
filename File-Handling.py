@@ -622,3 +622,18 @@ while opt in 'yY':
     if 1>ch<4:
         print('Please enter a valid option')
     opt=input('Do you want to continue: ')
+
+# Accept string/sentences from the user till the user enters “END” to. Save the data in a text file and then display only those sentences which begin with an uppercase alphabet.
+with open('file.txt','w') as f:
+    while True:
+        s=eval(input("Enter data (to quit enter END): "))
+        if s=="END":
+            break
+        else:
+            f.write(s+"\n")
+print('Lines beginning with uppercase chars:\n')
+with open('file.txt','r') as f:
+    content=f.readlines()
+    for i in content:
+        if i[0].isupper():
+            print(i)
