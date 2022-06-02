@@ -573,7 +573,6 @@ def create():
         pickle.dump(data,f)
     with open('file.bin','rb') as f:
         print('File data:\n',pickle.load(f))
-
 def search():
     en,emplst,f=eval(input('Enter employee number to search for: ')),[],False
     with open('file.bin','rb') as f:
@@ -587,7 +586,6 @@ def search():
                 break
         else:
             print('Employee records not found')
-
 def delete():
     emplst=[]
     with open('file.bin','rb') as f:
@@ -601,7 +599,6 @@ def delete():
     with open('file.bin','rb') as f:
         emplst=pickle.load(f)
         print(emplst)
-
 def update():
     en,emplst,f=eval(input('Enter employee number to update: ')),[],False
     with open('file.bin','rb') as f:
@@ -618,7 +615,6 @@ def update():
     with open('file.bin','rb') as f:
         emplst=pickle.load(f)
         print(emplst)
-
 opt='y'
 while opt in 'yY':
     print('1. Create file\n2. Search a particlar record\n3. Delete a particular record\n4. Update a particular record')
@@ -662,3 +658,71 @@ with open('file.bin','rb') as f:
             print('Item quantity:',content[i][2])
             print('Item price:',content[i][3])
             print('Item amount:',int(content[i][2])*int(content[i][3]))
+
+###########################################
+############### CSV FILES #################
+###########################################
+
+# Calculate sum of salaries and counting number of employees getting more than 7000
+import csv
+with open('employee.csv','r') as f:
+    content,count,sum=csv.reader(f),0,0
+    for r in content:
+        sum+=int(r[2])
+        if int(r[2])>7000:
+            count+=1
+print('Sum of salaries:',sum)
+print('Number of employees with salary greater than 7000:',count)
+
+# Create csv file and store employee number, name and salary. Search any employee number and display name and salary and if not found display apprporiate message.
+import csv
+with open('employee.csv','w') as f:
+    filewrite=csv.writer(f)
+    ans='y'
+    while ans in 'yY':
+        emplist=eval(input('Enter employee details (Format = [empno,empname,salary]): '))
+        filewrite.writerow(emplist)
+        ans=input('Do you wish to enter more: ')
+ans='y'
+with open('employee.csv','r') as f:
+    fileread=csv.reader(f)
+    while ans in 'yY':
+        f,empnosrch=False,int(input('Enter employee number: '))
+        for r in fileread:
+            if len(r)!=0:
+                if int(r[0])==empnosrch:
+                    print('Employee name:',r[1])
+                    print('Employee salary:',r[2])
+                    f=True
+                    break
+        if not f:
+            print('Employee not found')
+
+# Create csv file book.csv with fields bno, bname, type and price. Delete records where type='fiction' from original file and put in new file fiction.csv.
+import csv
+with open('book.csv','w') as f:
+    n=int(input('Enter number of books: '))
+    for i in range(n):
+        bno=int(input('Enter book number: '))
+        bname=input('Enter book name: ')
+        t=input('Enter book genre: ')
+        price=float(input('Enter book price: '))
+        f.write(str(bno)+','+bname+','+t+','+str(price)+'\n')
+with open('book.csv','r') as f:
+    fileread=csv.reader(f)
+    for row in fileread:
+        print(row)
+l=[]
+with open('book.csv','r+') as f:
+    fileread=csv.reader(f)
+    for row in fileread:
+        l.append(row)
+        for i in range(len(l)):
+            if l[i][2] in 'FICTIONfiction':
+                with open('fiction.csv','a') as fnew:
+                    csv.writer(fnew).writerow(l[i])
+                del l[i]
+with open('book.csv','w') as f:
+    csv.writer(f).writerows(l)
+
+#
