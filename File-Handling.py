@@ -728,9 +728,9 @@ with open('details.csv','w') as f:
     n=int(input('Enter number of items: '))
     for i in range(n):
         code=eval(input('Enter item code: '))
-        description=input('Enter item description: ')
-        price=float(input('Enter price: '))
-        d[code,description,price]=i
+        desc=input('Enter item description: ')
+        price=float(input('Enter item price: '))
+        d[code,desc,price]=i
     filewrite=csv.writer(f)
     filewrite.writerows(d)
 with open('details.csv','r',newline='\n') as f:
