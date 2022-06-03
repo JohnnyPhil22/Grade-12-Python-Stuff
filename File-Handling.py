@@ -708,10 +708,6 @@ with open('book.csv','w') as f:
         t=input('Enter book genre: ')
         price=float(input('Enter book price: '))
         f.write(str(bno)+','+bname+','+t+','+str(price)+'\n')
-with open('book.csv','r') as f:
-    fileread=csv.reader(f)
-    for row in fileread:
-        print(row)
 l=[]
 with open('book.csv','r+') as f:
     fileread=csv.reader(f)
