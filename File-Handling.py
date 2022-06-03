@@ -724,5 +724,3 @@ with open('book.csv','r+') as f:
                 del l[i]
 with open('book.csv','w') as f:
     csv.writer(f).writerows(l)
-
-#
