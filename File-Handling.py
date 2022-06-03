@@ -720,3 +720,20 @@ with open('book.csv','r+') as f:
                 del l[i]
 with open('book.csv','w') as f:
     csv.writer(f).writerows(l)
+
+# Get item details (code, description and price) for multiple items from the user and create a csv file by writing all the item details in one go.
+import csv
+d={}
+with open('details.csv','w') as f:
+    n=int(input('Enter number of items: '))
+    for i in range(n):
+        code=eval(input('Enter item code: '))
+        description=input('Enter item description: ')
+        price=float(input('Enter price: '))
+        d[code,description,price]=i
+    filewrite=csv.writer(f)
+    filewrite.writerows(d)
+with open('details.csv','r',newline='\n') as f:
+    fileread=csv.reader(f)
+    for r in fileread:
+        print(r)
