@@ -659,6 +659,24 @@ with open('file.bin','rb') as f:
             print('Item price:',content[i][3])
             print('Item amount:',int(content[i][2])*int(content[i][3]))
 
+# Enter staff details into a file, then search and display content of file where staff code is 13933
+import pickle
+with open('staff.dat','wb') as f:
+    n=int(input('Enter number of records: '))
+    d={}
+    for i in range(n):
+        no=int(input('Enter member number: '))
+        na=input('Enter name: ')
+        d['Member number']=no
+        d['Member name']=na
+        pickle.dump(d,f)
+    f.seek(0,0)
+print('Employee with staff number 13933: ')
+with open('staff.dat','rb') as f:
+    filedata=pickle.load(f)
+    if filedata['Member number']==13933:
+        print(filedata)
+
 ###########################################
 ############### CSV FILES #################
 ###########################################
@@ -736,3 +754,41 @@ with open('details.csv','r',newline='\n') as f:
     fileread=csv.reader(f)
     for r in fileread:
         print(r)
+
+# Write multiple rows together in one go and print file content
+import csv
+with open('result.csv','w') as f:
+    filewrite=csv.writer(f)
+    content=[['name','marks','grade'],['s',23,'A'],['t',24,'A'],['u',25,'A'],['b',26,'A']]
+    filewrite.writerows(content)
+with open('result.csv','r',newline='\n') as f:
+    fileread=csv.reader(f)
+    for r in fileread:
+        print(r)
+
+# Print employee details who have salary more than 4000
+import csv
+def dispemp():
+    with open('file.csv','r',newline='\n') as f:
+        fileread=csv.reader(f)
+        for row in fileread:
+            if int(row[2])>=4000:
+                print(row)
+
+# Print employee details for those whose names start with 'S' and print total number of people with names as such
+import csv
+def snames():
+    with open('emp.csv','r',newline='\n') as f:
+        count,fileread=0,csv.reader(f)
+        for row in fileread:
+            if row[1][0]=='S':
+                count+=1
+                print(row)
+        print('Number of \'S\' names are',count,'/',len(fileread))
+
+# Copy file contents to new file
+import csv
+def csvcopy(f,fnew):
+    with open('file.csv','r') as f:
+        with open('newfile.csv','w') as fnew:
+            csv.writer(fnew).writerows(csv.writer(f))
