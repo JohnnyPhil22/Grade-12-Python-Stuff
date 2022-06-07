@@ -459,6 +459,20 @@ with open('file.txt','r') as f:
         if i[0].isupper():
             print(i)
 
+# Function to read file content and display lines with 5 words
+def show_words(f):
+    with open('notes.txt') as f:
+        filedata=f.readlines()
+        l=[]
+        for i in filedata:
+            l=i.split(' ')
+            if len(l)==5:
+                print(i)
+with open('notes.txt','w') as f:
+    f.write(eval(input('Enter file data: ')))
+with open('notes.txt') as f:
+    show_words(f)
+
 ###########################################
 ############## BINARY FILES ###############
 ###########################################
