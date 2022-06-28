@@ -1,3 +1,76 @@
+# Stack Implementation
+def isEmpty(s):
+    if len(s)==0:
+        return True
+    else:
+        return False
+def push(s,item):
+    s.append(item)
+    top=len(s)-1
+def pop(s):
+    if isEmpty(s):
+        return "underflow"
+    else:
+        val=s.pop()
+        if len(s)==0:
+            top=None
+        else:
+            top=len(s)-1
+        return val
+def peek(s):
+    if isEmpty(s):
+        return "Underflow"
+    else:
+        top=len(s)-1
+        return s[top]
+def display(s):
+    if isEmpty(s):
+        print("sorry no itmes are in the stack")
+    else:
+        t=len(s)-1
+        print("(Top)",end=' ')
+        while(t>=0):
+            print(s[t],"<==",end=' ')
+            t-=1
+        print()
+# main program
+s=[]
+top=None
+
+print("stack implemetation")
+print("1. PUSH")
+print("2. POP")
+print("3. PEEK")
+print("4. DISPLAY STACK")
+print("0. EXIT")
+while True:
+      ch=int(input("ENTER YOUR CHOICE(1,2,3,4,0):"))
+      if ch==1:
+           val=int(input("enter the value to push:"))
+           if val%2==0:
+              push(s,val)
+              print("it is divisible by 2")
+           else:
+               print("number is not divisible")
+               
+      elif ch==2:
+            val=pop(s)
+            if val=="underflow":
+                  print("empty stack")
+            else:
+                 print("deleted item is:",val)
+      elif ch==3:
+            val=peek(s)
+            if val=="underflow":
+                  print("empty stack")
+            else:
+               print("Top item is:",val)
+      elif ch==4:
+           display(s)
+      elif ch==0:
+           print("bye")
+           break
+        
 # Function insert(Arr) where Arr is a list of numbers. From this list push all numbers divisible by 5 into a stack implemented by using a list. Display stack if it has at least one element otherwise display appropriate error message.
 def insert(Arr):
     l=[]
