@@ -36,7 +36,6 @@ def display(s):
 # main program
 s=[]
 top=None
-
 print("stack implemetation")
 print("1. PUSH")
 print("2. POP")
@@ -70,7 +69,51 @@ while True:
       elif ch==0:
            print("bye")
            break
-        
+
+# Reverse String
+# Create an empty stack - initialize size of stack as 0
+def createStack():
+	stack=[]
+	return stack
+
+# Determine the size of the stack
+def size(stack):
+	return len(stack)
+
+# Stack is empty if the size is 0
+def isEmpty(stack):
+	if size(stack) == 0:
+		return True
+
+# Function to add an item to stack (increase size by 1)
+def push(stack,item):
+	stack.append(item)
+
+# Function to remove an item from stack (decreases size by 1)
+def pop(stack):
+	if isEmpty(stack): return
+	return stack.pop()
+
+# A stack based function to reverse a string
+def reverse(string):
+	n = len(string)
+	# Create a empty stack
+	stack = createStack()
+	# Push all characters of string to stack
+	for i in range(0,n,1):
+		push(stack,string[i])
+	# Making the string empty since all characters are saved in stack
+	string=""
+	# Pop all characters of string and put them back to string
+	for i in range(0,n,1):
+		string+=pop(stack)
+	return string
+	
+# Driver program to test above functions
+string=input("enter the string:")
+string = reverse(string)
+print("Reversed string is " + string)
+
 # Function insert(Arr) where Arr is a list of numbers. From this list push all numbers divisible by 5 into a stack implemented by using a list. Display stack if it has at least one element otherwise display appropriate error message.
 def insert(Arr):
     l=[]
