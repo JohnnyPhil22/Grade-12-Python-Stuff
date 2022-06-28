@@ -89,7 +89,7 @@ def isEmpty(stack):
 def push(stack,item):
 	stack.append(item)
 
-# Function to remove an item from stack (decreases size by 1)
+# Function to remove an item from stack (decrease size by 1)
 def pop(stack):
 	if isEmpty(stack): return
 	return stack.pop()
