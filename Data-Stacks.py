@@ -114,6 +114,25 @@ string=input("enter the string:")
 string = reverse(string)
 print("Reversed string is " + string)
 
+# Print numbers divisible by 3 or 5 from list
+def push3_5(n):
+    Only3_5=[]
+    for i in n:
+        if i%3==0 or i%5==0:
+            Only3_5.append(i)
+    print(Only3_5)
+    return Only3_5
+notonly3_5=[]
+for i in range(5):
+    n=int(input("enter a number"))
+    notonly3_5.append(n)
+print(notonly3_5)
+    
+Only3_5=push3_5(notonly3_5)
+for i in range(len(Only3_5)):
+    print(Only3_5.pop(),end="  ")
+print("stack empty")
+
 # Function insert(Arr) where Arr is a list of numbers. From this list push all numbers divisible by 5 into a stack implemented by using a list. Display stack if it has at least one element otherwise display appropriate error message.
 def insert(Arr):
     l=[]
