@@ -1,3 +1,42 @@
+# Check if list is empty
+def isEmpty(l):
+    if len(l)==0:
+        return True
+    else:
+        return False
+
+# Implement stack with menu driven programs to push 10 items in it and pop only even numbers. Display popped items then display stack
+def isEmpty(l):
+    if len(l)==0:
+        return True
+    else:
+        return False
+def push(l,item):
+    l.append(item)
+    top=len(l)-1
+def pop(l):
+    if isEmpty(l):
+        print('Stack Underflow')
+    else:
+        for i in l:
+            if i%2==0:
+                print(i)
+    print(l)
+l=[]
+opt='y'
+while opt in 'yY':
+    print('1. Add elements\n2. Pop even numbers')
+    ch=int(input('Enter choice: '))
+    if ch==1:
+        for i in range(10):
+            item=int(input('Enter number: '))
+            push(l,item)
+    elif ch==2:
+        pop(l)
+    else:
+        print('Please enter either 1 or 2')
+    opt=input('Press y to continue: ')
+
 # Stack Implementation
 def isEmpty(s):
     if len(s)==0:
@@ -9,7 +48,7 @@ def push(s,item):
     top=len(s)-1
 def pop(s):
     if isEmpty(s):
-        return "underflow"
+        print("Stack Underflow")
     else:
         val=s.pop()
         if len(s)==0:
@@ -25,7 +64,7 @@ def peek(s):
         return s[top]
 def display(s):
     if isEmpty(s):
-        print("sorry no itmes are in the stack")
+        print("Empty stack")
     else:
         t=len(s)-1
         print("(Top)",end=' ')
@@ -33,7 +72,6 @@ def display(s):
             print(s[t],"<==",end=' ')
             t-=1
         print()
-# main program
 s=[]
 top=None
 print("stack implemetation")
@@ -71,45 +109,28 @@ while True:
            break
 
 # Reverse String
-# Create an empty stack - initialize size of stack as 0
 def createStack():
 	stack=[]
 	return stack
-
-# Determine the size of the stack
 def size(stack):
 	return len(stack)
-
-# Stack is empty if the size is 0
 def isEmpty(stack):
-	if size(stack) == 0:
+	if size(stack)==0:
 		return True
-
-# Function to add an item to stack (increase size by 1)
 def push(stack,item):
 	stack.append(item)
-
-# Function to remove an item from stack (decrease size by 1)
 def pop(stack):
 	if isEmpty(stack): return
 	return stack.pop()
-
-# A stack based function to reverse a string
 def reverse(string):
 	n = len(string)
-	# Create a empty stack
 	stack = createStack()
-	# Push all characters of string to stack
 	for i in range(0,n,1):
 		push(stack,string[i])
-	# Making the string empty since all characters are saved in stack
 	string=""
-	# Pop all characters of string and put them back to string
 	for i in range(0,n,1):
 		string+=pop(stack)
 	return string
-	
-# Driver program to test above functions
 string=input("enter the string:")
 string = reverse(string)
 print("Reversed string is " + string)
