@@ -133,6 +133,18 @@ def reverse(string):
     return string
 print("Reversed string: "+reverse(input("Enter string: ")))
 
+# Create stack with odd numbers out of all numbers entered. Display stack content with largest number.
+def create_stack_and_display():
+    l,onl=eval(input('Enter list: ')),[]
+    for i in l:
+        if i%2!=0:
+            onl.append(i)
+    if len(l)==0:
+        print('Empty Stack')
+    else:
+        print('Original stack:',l,'\nLargest number in original stack:',max(l),'\nOdd number stack:',onl,'\nLargest number in odd number stack:',max(onl))
+create_stack_and_display()
+
 # Print numbers divisible by 3 or 5 from list
 def push3_5(n):
     Only3_5=[]
