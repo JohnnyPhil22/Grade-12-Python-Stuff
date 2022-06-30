@@ -123,17 +123,15 @@ def pop(stack):
     if isEmpty(stack): return
     return stack.pop()
 def reverse(string):
-    n = len(string)
-    stack = createStack()
-    for i in range(0,n,1):
+    n=len(string)
+    stack=createStack()
+    for i in range(n):
         push(stack,string[i])
     string=""
-    for i in range(0,n,1):
+    for i in range(n):
         string+=pop(stack)
     return string
-string=input("enter the string:")
-string = reverse(string)
-print("Reversed string is " + string)
+print("Reversed string: "+reverse(input("Enter string: ")))
 
 # Print numbers divisible by 3 or 5 from list
 def push3_5(n):
