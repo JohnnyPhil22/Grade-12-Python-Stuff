@@ -155,7 +155,7 @@ def push3_5(n):
     return Only3_5
 notonly3_5=[]
 for i in range(5):
-    n=int(input("enter a number"))
+    n=int(input("Enter number: "))
     notonly3_5.append(n)
 print(notonly3_5)
     
