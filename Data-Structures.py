@@ -195,7 +195,7 @@ pops(l)
 def MakePush(Package):
     n=int(input('Enter number of packages to add: '))
     for i in range(n):
-        package=int(input('Enter package to add: '))
+        package=input('Enter package to add: ')
         Package.append(package)
     print(Package)
 def MakePop(Package):
