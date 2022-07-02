@@ -176,7 +176,37 @@ def insert(Arr):
         print('Stack empty')
 insert(eval(input('Enter list: ')))
 
-# Write a program to implement a stack for these book details (bookno, bookname), i.e., new each item node of the stack contains two types of information – a bookno and its name. Just implement Push and display operations.
+# Functions PushS(list) and PopS(List) for performing push and pop operations with a stack of list containing integers
+def pushs(l):
+    n=int(input('Enter number of numbers to add: '))
+    for i in range(n):
+        number=int(input('Enter number to add: '))
+        l.append(number)
+    print(l)
+def pops(l):
+    for i in range(len(l)):
+        print(l.pop())
+    print('Stack Empty')
+l=eval(input('Enter list: '))
+pushs(l)
+pops(l)
+
+# Functions MakePush(Package) and MakePop(Package) to add and delete a Package from a list of Package Descriptions (basically push and pop operations in a stack)
+def MakePush(Package):
+    n=int(input('Enter number of packages to add: '))
+    for i in range(n):
+        package=int(input('Enter package to add: '))
+        Package.append(package)
+    print(Package)
+def MakePop(Package):
+    for i in range(len(Package)):
+        print(Package.pop())
+    print('Stack Empty')
+l=eval(input('Enter list: '))
+MakePush(l)
+MakePop(l)
+
+# Implement a stack for these book details (bookno, bookname), i.e., new each item node of the stack contains two types of information – a bookno and its name. Just implement Push and display operations.
 top=None
 def pop(d):
     for a in range(len(d)-1,-1,-1):
