@@ -247,3 +247,36 @@ def pop(l):
                 print(det)
 push()
 pop(l)
+
+# Implement stack to input, push and display student IDs and their names.
+def push(d):
+    l=[]
+    for i in d:
+        if d[i][0].lower()=='a':
+            l.append(i)
+    return l
+def display (l,d):
+    for i in range(-1,-len(l)-1,-1):
+        print(d.get(l[i]),end=' ')
+    print('Empty Stack')
+ch=input('Enter y to continue: ')
+while ch in 'Yy':
+    print('1. Input Dictionary\n2. Push\n3. Display\n4. Exit')
+    opt=int(input('Enter choice: '))
+    if opt==1:
+        d={}
+        n=int(input('Enter number of students: '))
+        for j in range(n):
+            id=input('Enter ID number: ')
+            name=input('Enter name: ')
+            d[id]=name
+    elif opt==2:
+        m=push(d)
+        print(m)
+    elif opt==3:
+        m=push(d)
+        display(m,d)
+    elif opt==4:
+        ch='v'
+    else:
+        print('Enter valid number')
