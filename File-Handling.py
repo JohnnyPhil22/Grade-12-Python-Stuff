@@ -691,6 +691,57 @@ with open('staff.dat','rb') as f:
     if filedata['Member number']==13933:
         print(filedata)
 
+# Create a binary file with name and roll number. Search for a given roll number and display the name, if not found display appropriate message.
+import pickle
+with open('staff.dat','wb') as f:
+    n=int(input('Enter number of records: '))
+    mainl=[]
+    for i in range(n):
+        subl=[]
+        no=int(input('Enter roll number: '))
+        na=input('Enter name: ')
+        subl.append(no)
+        subl.append(na)
+        mainl.append(subl)
+    pickle.dump(mainl,f)
+    f.seek(0,0)
+rollnotocheck=int(input('Enter roll number to check: '))
+with open('staff.dat','rb') as f:
+    filedata=pickle.load(f)
+    for i in filedata:
+        if i[0]==rollnotocheck:
+            print(i)
+    else:
+        print('Roll number doesn\'t exist')
+
+# Create a binary file with roll number, name, and marks. Input a roll number and update the marks.
+import pickle
+with open('staff.dat','wb') as f:
+    n=int(input('Enter number of records: '))
+    mainl=[]
+    for i in range(n):
+        subl=[]
+        no=int(input('Enter roll number: '))
+        na=input('Enter name: ')
+        ma=float(input('Enter mark: '))
+        subl.append(no)
+        subl.append(na)
+        subl.append(ma)
+        mainl.append(subl)
+    pickle.dump(mainl,f)
+    f.seek(0,0)
+rollnotomodify=int(input('Enter roll number: '))
+with open('staff.dat','rb') as f:
+    filedata=pickle.load(f)
+    for i in filedata:
+        if i[0]==rollnotomodify:
+            print(i)
+            marktomodify=float(input('Enter new mark: '))
+            i[2]=marktomodify
+            print(i)
+    else:
+        print('Roll number doesn\'t exist')
+
 ###########################################
 ############### CSV FILES #################
 ###########################################
