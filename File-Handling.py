@@ -750,16 +750,189 @@ with open('staff.dat','rb') as f:
 ### d. EDESIG 
 ### e. DOJ (List containing [Day,Month,Year] of integer data type)
 ### Write all these details for every record as a dictionary into the file
+import pickle
+def create():
+    with open('emp.dat','ab') as f:
+        n=int(input('Enter number of employees: '))
+        for i in range(n):
+            eid=input('Enter employee ID: ')
+            ename=input('Enter employee name: ')
+            esal=float(input('Enter employee salary: '))
+            edesig=input('Enter employee designation: ')
+            doj=eval(input('Enter employee date of joining as list: '))
+            pickle.dump({ename:[eid,esal,edesig,doj]},f)
 
 ## 2. DISPLAY(): TO DISPLAY THE CONTENTS OF THE FILE WHOSE FILE NAME IS INPUT BY THE USER 
-## 3. SEARCHNAME(): TO SEARCH AND DISPLAY FOR GIVEN NAME AS INPUT BY THE USER, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND. 
+def display():
+    with open('emp.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                for i in filedata:
+                    print(filedata[i])
+        except:
+            f.close()
+
+## 3. SEARCHNAME(): TO SEARCH AND DISPLAY FOR GIVEN NAME AS INPUT BY THE USER, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND.
+def searchname():
+    flag=0
+    nametosearch=input("Enter name: ")
+    with open('emp.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                for i in filedata:
+                    if i==nametosearch:
+                        print(filedata[i])
+                        flag=1
+                        break
+        except:
+            if flag!=1:
+                print('Name not found')
+            f.close()
+
 ## 4. SEARCHID(): TO SEARCH AND DISPLAY FOR GIVEN ID AS INPUT BY THE USER, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND.
+def searchid():
+    c=3
+    q=input("Enter ID: ")
+    with open('emp.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                a=list(filedata.values())
+                for i in filedata:
+                    if a[0][0]==q:
+                        print(filedata[i])
+                        c=4
+                        break
+        except:
+            if c!=4:
+                print('EID not found') 
+            f.close()
+
 ## 5. APPEND() : TO ADD ADDITIONAL ‘N’ RECORDS INTO “EMP.DAT”.
-## 6. SEARCHMONTH() : TO COUNT THE TOTAL NO.OF EMPLOYEES AND DISPLAY THEIR DETAILS WHO HAVE JOINED IN A PARTICULAR MONTH ( MONTH IS USER INPUT ). 
+def append():
+    with open('emp.dat','ab') as f:
+        n=int(input('Enter number of employees: '))
+        for i in range(n):
+            eid=input('Enter employee ID: ')
+            ename=input('Enter employee name: ')
+            esal=float(input('Enter employee salary: '))
+            edesig=input('Enter employee designation: ')
+            doj=eval(input('Enter employee date of joining as list: '))
+            pickle.dump({ename:[eid,esal,edesig,doj]},f)
+
+## 6. SEARCHMONTH(): TO COUNT THE TOTAL NO. OF EMPLOYEES AND DISPLAY THEIR DETAILS WHO HAVE JOINED IN A PARTICULAR MONTH (MONTH IS USER INPUT).
+def searchmonth():
+    count=0
+    n=int(input("Enter the month in number: "))
+    with open('emp.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                count+=1
+                for i in filedata:
+                    if filedata[i][4][1]==n:
+                        print(filedata[i])
+                        break
+        except:
+            print('Total number of employees:',count)
+            f.close()
+
 ## 7. COPY(): TO COPY THE RECORDS , WHERE DESIG IS MANAGER INTO ANOTHER FILE CALLED “MANAGER.DAT”
+def copy():
+    c=[]
+    with open('emp.dat','rb') as f:
+        filedata=pickle.load(f)
+        for i in filedata:
+            if 'managerMANAGER' in filedata[i][3]:
+                c.append(filedata[i])
+    with open('manager.dat','ab') as fnew:
+        for i in c:
+            pickle.dump(c,fnew)
+
 ## 8. MODIFYSAL() : TO MODIFY SALARY OF THOSE EMPLOYEES WHERE SALARY IS LESS THAN 3000 ,BY ADDING 500 TO THEIR EXISTING SALARY.
+def modifysal():
+    c=[]
+    with open('emp.dat','rb+') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                for i in filedata:
+                   if filedata[i][2]<3000:
+                       filedata[i][2]+=500
+                c.append(filedata)
+        except:
+            f.seek(0)
+            for i in c:
+                pickle.dump(i,f)
+            f.close()
+
 ## 9. DELETEDESIG() : TO DELETE ALL EMPLOYEES WHERE DESIG IS “SALES” 
+def deletedesig():
+    c=[]
+    with open('emp.dat','rb+') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                for i in filedata:
+                    if 'salesSALES' not in filedata[i][3]:
+                        c.append(filedata)
+        except:
+            f.seek(0)
+            for i in c:
+                pickle.dump(i,f)
+            f.close()
+
 ## 10. DELETEID(): TO DELETE EMPLOYEE RECORD WITH THE GIVEN ID, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND
+def deleteid():
+    q=input("Enter employee ID: ")
+    a=1
+    c=[]
+    with open('emp.dat','rb+') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                for i in filedata:
+                    if filedata[i][0]!=q:
+                        c.append(filedata)
+                    else:
+                        a=2
+        except:
+            if a==1:
+                print('Record not found')
+            f=open('emp.dat','wb')
+            for i in c:
+                pickle.dump(i,f)
+            f.close()
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Display\n3. Search Name\n4. Search ID\n5. Append\n6. Search Month\n7. Copy\n8. Modify Salary\n9. Delete Designation\n10. Delete ID')
+    ch=int(input("Enter option (1 to 10): "))
+    if ch==1:
+        create()
+    if ch==2:
+        display()
+    if ch==3:
+        searchname()
+    if ch==4:
+        searchid()
+    if ch==5:
+        append()
+    if ch==6:
+        searchmonth()
+    if ch==7:
+        copy()
+    if ch==8:
+        modifysal()
+    if ch==9:
+        deletedesig()
+    if ch==10:
+        deleteid()
+    if 0<ch>10:
+        print('Please enter a number between 1 and 10.')
+    opt=input('Do you wish to continue: ')
 
 ###########################################
 ############### CSV FILES #################
