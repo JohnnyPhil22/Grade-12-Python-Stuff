@@ -742,6 +742,25 @@ with open('staff.dat','rb') as f:
     else:
         print('Roll number doesn\'t exist')
 
+# Menu driven program using functions to perform:
+## 1. CREATE(): To create an 'EMP.DAT' file having 'n' records having following details
+### a. EID
+### b. ENAME 
+### c. ESAL 
+### d. EDESIG 
+### e. DOJ (List containing [Day,Month,Year] of integer data type)
+### Write all these details for every record as a dictionary into the file
+
+## 2. DISPLAY(): TO DISPLAY THE CONTENTS OF THE FILE WHOSE FILE NAME IS INPUT BY THE USER 
+## 3. SEARCHNAME(): TO SEARCH AND DISPLAY FOR GIVEN NAME AS INPUT BY THE USER, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND. 
+## 4. SEARCHID(): TO SEARCH AND DISPLAY FOR GIVEN ID AS INPUT BY THE USER, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND.
+## 5. APPEND() : TO ADD ADDITIONAL ‘N’ RECORDS INTO “EMP.DAT”.
+## 6. SEARCHMONTH() : TO COUNT THE TOTAL NO.OF EMPLOYEES AND DISPLAY THEIR DETAILS WHO HAVE JOINED IN A PARTICULAR MONTH ( MONTH IS USER INPUT ). 
+## 7. COPY(): TO COPY THE RECORDS , WHERE DESIG IS MANAGER INTO ANOTHER FILE CALLED “MANAGER.DAT”
+## 8. MODIFYSAL() : TO MODIFY SALARY OF THOSE EMPLOYEES WHERE SALARY IS LESS THAN 3000 ,BY ADDING 500 TO THEIR EXISTING SALARY.
+## 9. DELETEDESIG() : TO DELETE ALL EMPLOYEES WHERE DESIG IS “SALES” 
+## 10. DELETEID(): TO DELETE EMPLOYEE RECORD WITH THE GIVEN ID, GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND
+
 ###########################################
 ############### CSV FILES #################
 ###########################################
