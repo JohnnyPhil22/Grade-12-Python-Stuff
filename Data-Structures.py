@@ -280,3 +280,29 @@ while ch in 'Yy':
         ch='v'
     else:
         print('Enter valid number')
+
+# Push uppercase alphabets of string into stack and pop & display contents of stack
+def pop(l):
+    for i in range(len(l)):
+        print(l.pop(),end=' ')
+def push(s):
+    l=[]
+    for i in s:
+        if i.isupper():
+            l.append(i)
+    pop(l)
+s=input('Enter string: ')
+push(s)
+
+# Push positive numbers from list of numbers into stack and pop & display contents of stack
+def pop(l):
+    for i in range(len(l)):
+        print(l.pop(),end=' ')
+def push(s):
+    l=[]
+    for i in s:
+        if int(i)>0:
+            l.append(i)
+    pop(l)
+s=eval(input('Enter list: '))
+push(s)
