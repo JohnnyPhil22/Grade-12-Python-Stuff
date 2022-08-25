@@ -1226,3 +1226,115 @@ def csvcopy(f,fnew):
     with open('file.csv','r') as f:
         with open('newfile.csv','w') as fnew:
             csv.writer(fnew).writerows(csv.writer(f))
+
+# Menu driven program to keep inventory of toys [KEEP CREATE() OUTSIDE THE MENU, SO TO AVOID ACCIDENTAL OVERWRITING OF FILE, KEEP THE REST IN THE MENU.]
+## CREATE() : TO CREATE A “TOY.CSV” FILE CONTAINING RECORDS HAVING THE FOLLOWING DETAILS: 
+### NAME OF TOY 
+### PRICE 
+### CATEGORY 
+### STK
+### WRITE ALL THESE DETAILS FOR EVERY RECORD INTO THE FILE
+import csv
+def create():
+    with open('toy.csv','w',newline='\r\n') as f:
+        n=int(input("Enter the number of entries: "))
+        for i in range(n):
+            name=input("Enter toy name: ")
+            price=int(input("Enter toy price: "))
+            category=input("Enter toy category: ")
+            stock=int(input("Enter toy stock: "))
+            csv.writer(f).writerow([name,price,category,stock])
+
+## DISPLAY(): TO DISPLAY THE CONTENTS OF THE FILE WHOSE FILE NAME IS INPUT BY THE USER 
+def display():
+    with open('toy.csv','r',newline='\r\n') as f:
+        for i in csv.reader(f):
+            print(i)
+
+## SEARCH(): TO SEARCH AND DISPLAY FOR GIVEN NAME AS INPUT BY THE USER , GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND. 
+def search():
+    nametosrch=input("Enter toy name: ")
+    with open('toy.csv','r',newline='\r\n') as f:
+        for i in csv.reader(f):
+            if i[0]==nametosrch:
+                print(i)
+
+## APPEND() : TO ADD ADDITIONAL ‘N’ RECORDS INTO “TOY.CSV” 
+def append():
+    with open('toy.csv','a',newline='\r\n') as f:
+        n=int(input("Enter the number of entries: "))
+        for i in range(n):
+            name=input("Enter toy name: ")
+            price=int(input("Enter toy price: "))
+            category=input("Enter toy category: ")
+            stock=int(input("Enter toy stock: "))
+            csv.writer(f).writerow([name,price,category,stock])
+    print('Updated contents of file:')
+    display()
+
+## HIGHEST(): TO COPY THE RECORDS OF TOYS WHERE PRICE > 100 INTO ANOTHER FILE CALLED “HIGHEST.CSV” 
+def highest():
+    with open('toy.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if int(i[1])>100:
+                l.append(i)
+    with open('highest.csv','a',newline='\r\n') as fnew:
+        csv.writer(fnew).writerows(l)
+    print('Contents of original file:')
+    display()
+    print('Contents of \'highest.csv\' file:')
+    with open('highest.csv','r',newline='\r\n') as fnew:
+        for i in csv.reader(fnew):
+            print(i)
+
+## MODIFY() : TO MODIFY STK OF THOSE TOYS WHERE STK IS LESS THAN 10 ,BY ADDING 10 TO THEIR EXISTING STK. 
+def modify():
+    with open('toy.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if int(i[3])<10:
+                i[3]=int(i[3])+10
+            l.append(i)
+    with open('toy.csv','w',newline='\r\n') as f:
+        csv.writer(f).writerows(l)
+    display()
+
+## DELETE(): TO DELETE ALL TOYS WHERE CATEGORY IS “FUN”.
+###       NAME       PRICE CATEGORY STK
+### BUILDING BLOCKS   45     EDU     34
+### LEARNING SCIENCE  156   JUNIOR   5
+### CAR               134    FUN     56
+### ABACUS            78     EDU     12
+### REMOTE DRONE      200    FUN     7
+### BIKE              80    JUNIOR   28
+def delete():
+    with open('toy.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if i[2].lower()!='fun':
+                l.append(i)
+    with open('toy.csv','w',newline='\r\n') as f:
+        csv.writer(f).writerows(l)
+    display()
+
+create()
+opt='y'
+while opt in 'yY':
+    print('1. Display\n2. Search Name\n3. Append\n4. Highest\n5. Modify\n6. Delete')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        display()
+    if ch==2:
+        search()
+    if ch==3:
+        append()
+    if ch==4:
+        highest()
+    if ch==5:
+        modify()
+    if ch==6:
+        delete()
+    if 0<ch>6:
+        print('Please enter a number between 1 and 6')
+    opt=input('Do you wish to continue: ')
