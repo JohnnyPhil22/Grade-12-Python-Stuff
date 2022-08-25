@@ -934,6 +934,183 @@ while opt in 'yY':
         print('Please enter a number between 1 and 10.')
     opt=input('Do you wish to continue: ')
 
+# WRITE A MENU DRIVEN PROGRAM IN PYTHON, USING FUNCTIONS TO PERFORM THE FOLLOWING: 
+## 1. CREATE() : TO CREATE A “STUDENT.DAT” FILE CONTAINING N RECORDS HAVING THE FOLLOWING DETAILS: 
+### a. ROLL 
+### b. NAME OF STUDENT 
+### c. MARKS 
+### d. HOUSE
+### WRITE ALL THESE DETAILS FOR EVERY RECORD AS A LIST INTO THE FILE.
+import pickle
+def create():
+    n=int(input("Enter the number of entries: "))
+    with open('student.dat','wb') as f:
+        for i in range(n):
+            rn=int(input("Enter roll number: "))
+            na=input("Enter name: ")
+            ma=int(input('Enter marks: '))
+            ho=input("Enter house: ")
+            pickle.dump([rn,na,ma,ho],f)
+
+## 2. DISPLAY(): TO DISPLAY THE CONTENTS OF THE FILE WHOSE FILE NAME IS INPUT BY THE USER 
+def display():
+    with open('student.dat','rb') as f:
+        try:
+            while True:
+                print(pickle.load(f))
+        except:
+            f.close()
+
+## 3. SEARCHNAME(): TO SEARCH AND DISPLAY FOR GIVEN NAME AS INPUT BY THE USER , GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND. 
+def searchname():
+    flag=0
+    name=input("Enter name: ")
+    with open('student.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                if filedata[1]==name:
+                    print(filedata)
+                    flag=1
+        except:
+            if flag!=1:
+                print('Name not found')
+            f.close()
+
+## 4. SEARCHID(): TO SEARCH AND DISPLAY FOR GIVEN ROLL AS INPUT BY THE USER , GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND.
+def searchid():
+    flag=0
+    rollnumber=int(input("Enter roll number: "))
+    with open('student.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                if filedata[0]==rollnumber:
+                    print(filedata)
+                    flag=1
+        except:
+            if flag!=1:
+                print('Roll number not found')
+            f.close()
+
+## 5. APPEND() : TO ADD ADDITIONAL ‘N’ RECORDS INTO “STUDENT.DAT”. 
+def append():
+    n=int(input("Enter the number of entries: "))
+    with open('student.dat','ab') as f:
+        for i in range(n):
+            rn=int(input("Enter roll number: "))
+            na=input("Enter name: ")
+            ma=int(input('Enter marks: '))
+            ho=input("Enter house: ")
+            pickle.dump([rn,na,ma,ho],f)
+
+## 6. COUNT() : TO COUNT THE TOTAL NO.OF RECORDS IN THE FILE.ALSO FIND THE AVERAGE OF ALL THE STUDENTS IN THE FILE
+def count():
+    count,total=0,0
+    with open('student.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                count+=1
+                total+=filedata[2]
+        except:
+            print('Total number of students: ',count)
+            print('Average marks: ',total/count)
+            f.close()
+
+## 7. HIGHEST(): TO COPY THE RECORDS OF STUDENTS WHOSE MARK IS > 90 INTO ANOTHER FILE CALLED “HIGH.DAT”
+def highest():
+    highmarklist=[]
+    with open('student.dat','rb') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                if filedata[2]>90:
+                    highmarklist.append(filedata)
+        except:
+            f.close()
+    with open('high.dat','ab') as fnew:
+        pickle.dump(highmarklist,fnew)
+
+## 8. MODIFY() : TO MODIFY MARKS OF THOSE STUDENTS WHERE MARKS IS LESS THAN 23 ,BY ADDING 10 TO THEIR EXISTING MARK.
+def modify():
+    modmarklist=[]
+    with open('student.dat','rb+') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                if filedata[2]<23:
+                    filedata[2]+=10
+                modmarklist.append(filedata)
+        except:
+            f.seek(0)
+            for i in modmarklist:
+                pickle.dump(i,f)
+            f.close()
+
+## 9. DELETE() : TO DELETE ALL STUDENTS WHERE HOUSE IS “EMERALD” 
+def delete():
+    notemelist=[]
+    with open('student.dat','rb+') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                if 'emeraldEMERALD' not in filedata[3]:
+                    notemelist.append(filedata)
+        except:
+            f.close()
+            with open('student.dat','wb') as f:
+                for i in notemelist:
+                    pickle.dump(i,f)
+
+## 10. DELETEROLL(): TO DELETE STUDENT RECORD WITH THE GIVEN ROLL , GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND
+def deleteroll():
+    notgivroll,flag=[],0
+    q=int(input("Enter roll: "))
+    with open('student.dat','rb+') as f:
+        try:
+            while True:
+                filedata=pickle.load(f)
+                if filedata[0]!=q:
+                    notgivroll.append(filedata)
+                else:
+                    flag=1
+        except:
+            if flag==0:
+                print('Not found')
+            f.close()
+            with open('student.dat','wb') as f:
+                for i in notgivroll:
+                    pickle.dump(i,f)
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Display\n3. Search Name\n4. Search ID\n5. Append\n6. Count\n7. Highest Marks\n8. Modify Marks\n9. Delete House\n10. Delete Roll')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        create()
+    if ch==2:
+        display()
+    if ch==3:
+        searchname()
+    if ch==4:
+        searchid()
+    if ch==5:
+        append()
+    if ch==6:
+        count()
+    if ch==7:
+        highest()
+    if ch==8:
+        modify()
+    if ch==9:
+        delete()
+    if ch==10:
+        deleteroll()
+    if 0<ch>10:
+        print('Please enter a number between 1 and 10.')
+    opt=input('Do you wish to continue: ')
+
 ###########################################
 ############### CSV FILES #################
 ###########################################
