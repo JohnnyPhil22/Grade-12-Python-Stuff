@@ -319,7 +319,49 @@ while opt in 'yY':
         print('Please enter a number between 1 and 4')
     opt=input('Do you wish to continue: ')
 
+# Write a program to implement a stack named as train, containing [train no, train name]. Using functions implement all permissible operations on a stack.
+def push(l):
+    number=int(input("Enter train number: "))
+    name=input("Enter train name: ")
+    l.append([number,name])
+    print('New stack:',l)
 
+def peek(l):
+    print(l[-1])
+
+def display(l):
+    print(l)
+
+def pop(l):
+    for i in range(len(l)):
+        if len(l)==0:
+            print('Empty stack')
+            break
+        else:
+            print(l.pop())
+    print('Empty stack')
+
+train=[]
+n=int(input("Enter number of entries: "))
+for i in range(n):
+    number=int(input("Enter train number: "))
+    name=input("Enter train name: ")
+    train.append([number,name])
+opt='y'
+while opt in 'yY':
+    print('1. Push\n2. Peek\n3. Display\n4. Pop')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        push(train)
+    if ch==2:
+        peek(train)
+    if ch==3:
+        display(train)
+    if ch==4:
+        pop(train)
+    if 0<ch>4:
+        print('Enter a number between 1 and 4')
+    opt=input('Do you wish to continue: ')
 
 # Push uppercase alphabets of string into stack and pop & display contents of stack
 def pop(l):
