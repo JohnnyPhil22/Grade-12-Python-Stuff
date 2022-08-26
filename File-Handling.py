@@ -1338,3 +1338,138 @@ while opt in 'yY':
     if 0<ch>6:
         print('Please enter a number between 1 and 6')
     opt=input('Do you wish to continue: ')
+
+# To create a menu driven program to manage student marks
+## CREATE() : TO CREATE A “STUDENT.CSV” FILE CONTAINING N RECORDS HAVING THE FOLLOWING DETAILS : 
+### NAME 
+### ENGLISH MARKS 
+### CSC MARKS 
+### MATH MARKS 
+### PHY MARKS
+### CHEM MARKS 
+### AVERAGE ( TO FIND AVERAGE FOR 5 SUBJECTS AND WRITE IT INTO FILE )
+### WRITE ALL THESE DETAILS FOR EVERY RECORD INTO THE FILE –
+import csv
+def create():
+    n=int(input("Enter the number of entries: "))
+    with open('student.csv','w',newline='\n') as f:
+        for i in range(n):
+            name=input("Enter name: ")
+            phy=int(input("Enter Physics marks: "))
+            chem=int(input("Enter Chemistry marks: "))
+            math=int(input("Enter Math marks: "))
+            comp=int(input("Enter Computers marks: "))
+            eng=int(input("Enter English marks: "))
+            csv.writer(f).writerow([name,phy,chem,math,comp,eng,((phy+chem+math+comp+eng)/5)])
+
+## DISPLAY(): TO DISPLAY THE CONTENTS OF THE FILE WHOSE FILE NAME IS INPUT BY THE USER IN A TABULAR FORM.
+def display():
+    with open('student.csv','r',newline='\r\n') as f:
+        for i in csv.reader(f):
+            print(i)
+
+## SEARCH(): TO SEARCH AND DISPLAY FOR GIVEN NAME AS INPUT BY THE USER , GIVE APPROPRIATE MESSAGE IF RECORD NOT FOUND.
+def search():
+    q=input("Enter name: ")
+    with open('student.csv','r',newline='\r\n') as f:
+        for i in csv.reader(f):
+            if i[0]==q:
+                print(i)
+
+## APPEND() : TO ADD ADDITIONAL ‘N’ RECORDS INTO “STUDENT.CSV” 
+def append():
+    n=int(input("Enter the number of entries: "))
+    with open('student.csv','a',newline='\n') as f:
+        for i in range(n):
+            name=input("Enter name: ")
+            phy=int(input("Enter Physics marks: "))
+            chem=int(input("Enter Chemistry marks: "))
+            math=int(input("Enter Math marks: "))
+            comp=int(input("Enter Computers marks: "))
+            eng=int(input("Enter English marks: "))
+            csv.writer(f).writerow([name,phy,chem,math,comp,eng,((phy+chem+math+comp+eng)/5)])
+    display()
+
+## FAILURE(): TO COPY THE NAMES OF STUDENTS WHO HAVE FAILED EVEN IN ONE SUBJECT INTO ANOTHER FILE CALLED “FAIL.TXT”.
+def failure():
+    with open('student.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            for j in range(1,6):
+                if int(i[j])<34:
+                    l.append(i)
+                    break
+    print('Contents of original file:')
+    display()
+    with open('fail.csv','a',newline='\r\n') as fnew:
+        csv.writer(fnew).writerows(l)
+    print('Contents of new file: ')
+    with open('fail.csv','r',newline='\r\n') as fnew:
+        for i in csv.reader(fnew):
+            print(i)
+
+## HIGHEST(): TO COPY THE RECORDS OF STUDENTS WHOSE AVERAGE IS GREATER THAN 85% INTO ANOTHER FILE CALLED “HIGHEST.CSV” 
+def highest():
+    with open('student.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if float(i[6])>85:
+                l.append(i)
+    with open('highest.csv','w',newline='\r\n') as fnew:
+        csv.writer(fnew).writerows(l)
+    print('Contents of original file:')
+    display()
+    print('Contents of new file:')
+    with open('highest.csv','r',newline='\r\n') as fnew:
+        for i in csv.reader(fnew):
+            print(i)
+
+## MODIFY() : TO MODIFY MARKS IN CSC OF THOSE STUDENTS WHO HAVE SCORED LESS THAN 50 , BY ADDING 10 TO THEIR MARKS , THE CHANGE MUST BE EVIDENT IN “STUDENT.CSV” FILE.
+def modify():
+    with open('student.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if int(i[4])<50:
+                i[4]=int(i[4])+10
+                i[6]=float(i[6])+2
+            l.append(i)
+    with open('student.csv','w',newline='\r\n') as f:
+        csv.writer(f).writerows(l)
+    print('Updated Contents of file:')
+    display()
+
+## DELETE(): TO DELETE ALL STUDENTS WHOSE AVERAGE IS LESS THAN 40%.THE CHANGE MUST BE EVIDENT IN “STUDENT.CSV” FILE.
+def delete():
+    with open('student.csv','r',newline='\r\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if float(i[6])>40:
+                l.append(i)
+    with open('student.csv','w',newline='\r\n') as f:
+        csv.writer(f).writerows(l)
+    print('Updated contents of file:')
+    display()
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Display\n3. Search\n4. Append\n5. Failure\n6. Highest\n7. Modify\n8. Delete')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        create()
+    if ch==2:
+        display()
+    if ch==3:
+        search()
+    if ch==4:
+        append()
+    if ch==5:
+        failure()
+    if ch==6:
+        highest()
+    if ch==7:
+        modify()
+    if ch==8:
+        delete()
+    if 0<ch>8:
+        print('Please enter a number between 1 and 8')
+    opt=input('Would you like to continue: ')
