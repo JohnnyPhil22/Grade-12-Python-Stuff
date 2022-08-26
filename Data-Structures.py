@@ -281,7 +281,7 @@ while ch in 'Yy':
     else:
         print('Enter valid number')
 
-#1 Write a program to implement a list of numbers as stack with push, pop, peek and display options.
+# Write a program to implement a list of numbers as stack with push, pop, peek and display options.
 def push(l):
     numtoadd=eval(input("Enter number: "))
     l.append(numtoadd)
@@ -318,6 +318,8 @@ while opt in 'yY':
     if 0<ch>4:
         print('Please enter a number between 1 and 4')
     opt=input('Do you wish to continue: ')
+
+
 
 # Push uppercase alphabets of string into stack and pop & display contents of stack
 def pop(l):
