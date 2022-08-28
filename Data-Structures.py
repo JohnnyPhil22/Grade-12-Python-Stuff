@@ -363,6 +363,48 @@ while opt in 'yY':
         print('Enter a number between 1 and 4')
     opt=input('Do you wish to continue: ')
 
+# Write a program to create a stack contaning student names, and manipulate the stack by peforming the following instructions.
+# Insert()
+def insert(s):
+    name=input("Enter name: ")
+    s.append(name)
+    print(s)
+
+# Delete()
+def delete(s):
+    s.pop(0)
+    print(s)
+
+# Peek()
+def peek(s):
+    print(s[0])
+
+# Display()
+def display(s):
+    print(s)
+
+l=[]
+n=int(input("Enter number of entries: "))
+for i in range(n):
+    name=input("Enter name: ")
+    l.append(name)
+
+opt='y'
+while opt in 'yY':
+    print('1. Insert\n2. Display\n3. Peek\n4. Delete')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        insert(l)
+    if ch==2:
+        display(l)
+    if ch==3:
+        peek(l)
+    if ch==4:
+        delete(l)
+    if 0<ch>4:
+        print('Please enter a number between 1 and 4')
+    opt=input('Do you wish to continue: ')
+
 # Push uppercase alphabets of string into stack and pop & display contents of stack
 def pop(l):
     for i in range(len(l)):
