@@ -418,6 +418,38 @@ if len(numdiv5)>0:
 else:
     print('Empty stack')
 
+# Write addnew(book), remove(book) methodsin python to add a new book and remove a book from a list of books, considering them to act as Push and Pop operations of the data structure stack.
+book=eval(input("Enter list of book names: "))
+
+def addnew(book):
+    booknametoadd=input("Enter book name: ")
+    book.append(booknametoadd)
+    print(book)
+
+def remove(book):
+    if len(book)!=0:
+        print(book.pop())
+    else:
+        print('Empty stack')
+
+opt='y'
+while opt in 'yY':
+    print('1. Add\n2. Remove')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        addnew(book)
+    if ch==2:
+        remove(book)
+    if 1<ch>2:
+        print('Please enter either 1 or 2')
+    opt=input('Do you wish to continue: ')
+
+# Write a function in python POP(Arr), where Arr is a stack implemented by list of number. The function returns the value deleted from the stack.
+def POP(Arr):
+    print(Arr.pop())
+Arr=eval(input("Enter list: "))
+POP(Arr)
+
 # Push uppercase alphabets of string into stack and pop & display contents of stack
 def pop(l):
     for i in range(len(l)):
