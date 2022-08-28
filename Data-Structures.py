@@ -405,6 +405,19 @@ while opt in 'yY':
         print('Please enter a number between 1 and 4')
     opt=input('Do you wish to continue: ')
 
+# Write a function in python, insert(Arr), where Arr is a list of numbers. From this list push all the numbers divisible by 5 into a stack implemented by using a list . Display the stack if it has at least one element, otherwise display appropriate error message.
+numdiv5=[]
+Arr=eval(input('Enter list of numbers: '))
+def insert(Arr,s):
+    for i in Arr:
+        if i%5==0:
+            s.append(i)
+insert(Arr,numdiv5)
+if len(numdiv5)>0:
+    print('Stack of numbers divisible by 5:',numdiv5)
+else:
+    print('Empty stack')
+
 # Push uppercase alphabets of string into stack and pop & display contents of stack
 def pop(l):
     for i in range(len(l)):
