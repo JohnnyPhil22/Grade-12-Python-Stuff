@@ -475,3 +475,39 @@ def push(s):
     pop(l)
 s=eval(input('Enter list: '))
 push(s)
+
+# A grocery shop implements its inventory as a stack I and each item is a dictionary with key as Icode and value a list with Iname and price. Write user defined functions to push to a stack I an item detail inputted by the user, pop an item from stack I and display the popped item, display the stack and exit
+def push():
+    global l
+    l=[]
+    n=int(input('Enter number of items: '))
+    for i in range(n):
+        d={}
+        icode=int(input('Enter item code: '))
+        iname=input('Enter item name: ')
+        price=float(input('Enter item price: '))
+        d[icode]=[iname,price]
+        l.append(d)
+
+def pop():
+    print('Popped element:\n')
+    print(l.pop())
+
+def display():
+    print('Stack:\n')
+    for i in range(len(l)-1,-1,-1):
+        print(l[i])
+
+opt='y'
+while opt in 'yY':
+    print('1. Push to stack\n2. Pop an element\n3. Display\n4. Exit')
+    ch=int(input('Enter choice: '))
+    if ch==1:
+        push()
+    elif ch==2:
+        pop()
+    elif ch==3:
+        display()
+    elif ch==4:
+        opt='N'
+    opt=input('Do you wish to continue: ')
