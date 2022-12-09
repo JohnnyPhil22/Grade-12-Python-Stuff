@@ -1473,3 +1473,84 @@ while opt in 'yY':
     if 0<ch>8:
         print('Please enter a number between 1 and 8')
     opt=input('Would you like to continue: ')
+
+# Menu driven program to create CSV file to store student details (GR No, name, marks, class), insert 5 records (User input), read the records and display all records of the file, display only those records where marks are greater than 80, increase marks by 10 if student got less than 50 and delete the record of the student where GR No is 1234
+import csv
+
+def display():
+    with open('student.csv','r',newline='\n') as f:
+        for i in csv.reader(f):
+            print(i)
+
+def create():
+    with open('student.csv','w',newline='\n') as f:
+        n=int(input('Enter number of students: '))
+        for i in range(n):
+            grno=int(input('Enter GR No.: '))
+            name=input('Enter name: ')
+            marks=float(input('Enter marks: '))
+            clas=int(input('Enter class: '))
+            csv.writer(f).writerow([grno,name,marks,clas])
+    display()
+
+def insert():
+    with open('student.csv','a',newline='\n') as f:
+        for i in range(5):
+            grno=int(input('Enter GR No.: '))
+            name=input('Enter name: ')
+            marks=float(input('Enter marks: '))
+            clas=input('Enter class: ')
+            csv.writer(f).writerow([grno,name,marks,clas])
+    display()
+
+def disp_marks_80():
+    with open('student.csv','r',newline='\n') as f:
+        d=csv.reader(f)
+        for i in d:
+            if float(i[2])>80.0:
+                print(i)
+
+def inc_marks():
+    with open('student.csv','r',newline='\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if float(i[2])<50.0:
+                a=int(float(i[2]))
+                a+=10
+                i[2]=float(a)
+                l.append(i)
+            else:
+                l.append(i)
+    with open('student.csv','w',newline='\n') as f:
+        csv.writer(f).writerows(l)
+    display()
+
+def delete():
+    with open('student.csv','r',newline='\n') as f:
+        l=[]
+        for i in csv.reader(f):
+            if int(i[0])!=1234:
+                l.append(i)
+    with open('student.csv','w',newline='\n') as f:
+        csv.writer(f).writerows(l)
+    display()
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Insert\n3. Display\n4. Display records where marks > 80\n5. Increase marks if less than 50\n6. Delete records where GR Number is 1234')
+    ch=int(input("Enter your choice: "))
+    if ch==1:
+        create()
+    if ch==2:
+        insert()
+    if ch==3:
+        display()
+    if ch==4:
+        disp_marks_80()
+    if ch==5:
+        inc_marks()
+    if ch==6:
+        delete()
+    if 0<ch>8:
+        print('Please enter a number between 1 and 6')
+    opt=input('Would you like to continue: ')
