@@ -631,3 +631,94 @@ while opt in 'yY':
     if 0<ch>10:
         print('Please enter a number between 1 and 10.')
     opt=input('Do you wish to continue: ')
+
+# Menu driven program to:
+## 1. Create binary file stock.dat to store details of product PCode, PName, Price, Brand
+## 2. Insert 5 records
+## 3. Read and display all records
+## 4. Display total price of all products
+## 5. Increase price of products by 10 if brand name is 'Adil'
+## 6. Delete record of product if price is greater than 50
+
+import pickle
+def create():
+    with open ('stock.dat','wb') as f:
+        pass
+
+def insert():
+    with open ('stock.dat','wb') as f:
+        x = int(input('Enter number of Records: '))
+        temp = []
+        for i in range(x):
+            Pcode = int(input('Enter Pcode: '))
+            Pname = input('Enter Pname: ')
+            Price = int(input('Enter Price: '))
+            Brand = input('Enter Brand: ')
+            temp.append([Pcode,Pname,Price,Brand])
+        pickle.dump(temp,f)
+
+def read():
+    with open ('stock.dat','rb') as f:
+        x = pickle.load(f)
+        print(x)
+
+def total():
+    with open ('stock.dat','rb') as f:
+        x = pickle.load(f)
+        count = 0
+        for i in x:
+            count += int(i[-2])
+    print('Total price is: ',count)
+
+def increase():
+    with open ('stock.dat','rb') as f:
+        x = pickle.load(f)
+        temp = []
+        for i in x:
+            if i[-1].lower() == 'adil':
+                y = i[-2]
+                i[-2] = int(y)+10
+                temp.append(i)
+            else:
+                temp.append(i)
+    with open ('stock.dat','wb') as f:
+        pickle.dump(temp,f)
+
+def delete():
+    with open ('stock.dat','rb') as f:
+        x = pickle.load(f)
+        temp = []
+        for i in x:
+            if int(i[-2]) > 50:
+                pass
+            else:
+                temp.append(i)
+    with open ('stock.dat','wb') as f:
+        pickle.dump(temp,f)
+        
+
+condn = True
+
+while condn == True:
+    print('Choose\n1.Open File\n2.Insert Records\n3.Read Records\n4.Display Price\n5.Increase\n6.Delete\n7.Exit')
+    x = int(input('Enter choice: '))
+    if x == 1:
+        create()
+        print()
+    if x == 2:
+        insert()
+        print()
+    if x == 3:
+        read()
+        print()
+    if x == 4:
+        total()
+        print()
+    if x == 5:
+        increase()
+        print()
+    if x == 6:
+        delete()
+        print()
+    if x == 7:
+        condn = False
