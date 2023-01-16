@@ -695,7 +695,6 @@ def delete():
                 temp.append(i)
     with open ('stock.dat','wb') as f:
         pickle.dump(temp,f)
-        
 
 condn = True
 
