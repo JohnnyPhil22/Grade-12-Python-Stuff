@@ -468,3 +468,18 @@ with open('notes.txt','w') as f:
     f.write(eval(input('Enter file data: ')))
 with open('notes.txt') as f:
     show_words(f)
+
+# Display file contents in capital letters
+with open('notes.txt','w') as f:
+    f.write(input('Enter content: '))
+with open('notes.txt') as f:
+    print(f.read().upper())
+
+# Print 5 - word sentences from file
+with open('notes.txt','w') as f:
+    f.write(eval(input('Enter content: ')))
+with open('notes.txt') as f:
+    for i in f.readlines():
+        l=i.split(' ')
+        if len(l)==5:
+            print(i)
