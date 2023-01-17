@@ -511,3 +511,47 @@ while opt in 'yY':
     elif ch==4:
         opt='N'
     opt=input('Do you wish to continue: ')
+
+# Push and pop integer to/from stack
+def PushS(List):
+    List.append(int(input('Enter number to add: ')))
+    print('New stack:',List)
+def PopS(List):
+    for i in range(len(List)):
+        print('Popped element:',List.pop())
+    print('Stack Empty')
+l=eval(input('Enter integers as list: '))
+opt='y'
+while opt in 'yY':
+    print('1. Push Integer\n2. Pop Integer\n3. Exit')
+    ch=int(input('Enter choice: '))
+    if ch==1:
+        PushS(l)
+        opt=input('Continue? ')
+    if ch==2:
+        PopS(l)
+        opt=input('Continue? ')
+    if ch==3:
+        opt='n'
+
+# Insert and Remove name to/from stack of student names
+def InsertQ(Names):
+    Names.append(input('Enter name to add: '))
+    print('New stack:',Names)
+def RemoveQ(Names):
+    for i in range(len(Names)):
+        print('Popped element:',Names.pop())
+    print('Stack Empty')
+l=eval(input('Enter student names as list: '))
+opt='y'
+while opt in 'yY':
+    print('1. Insert Name\n2. Remove Name\n3. Exit')
+    ch=int(input('Enter choice: '))
+    if ch==1:
+        InsertQ(l)
+        opt=input('Continue? ')
+    if ch==2:
+        RemoveQ(l)
+        opt=input('Continue? ')
+    if ch==3:
+        opt='n'
