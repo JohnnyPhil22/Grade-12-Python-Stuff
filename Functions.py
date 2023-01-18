@@ -239,3 +239,16 @@ def move(l):
     return l
 l=eval(input('Enter list: '))
 print('New list:',move(l))
+
+# Add all odd and even values in a list separately
+def AddOddEven(VALUES):
+    odd_sum,even_sum=0,0
+    for i in VALUES:
+        if i%2==0:
+            even_sum+=i
+        if i%2!=0:
+            odd_sum+=i
+    print(f'Even sum: {even_sum}')
+    print(f'Odd sum: {odd_sum}')
+l=eval(input('Enter list of integers: '))
+AddOddEven(l)
