@@ -264,4 +264,20 @@ id_list=eval(input('Enter IDs in list: '))
 val=int(input('Enter ID to count: '))
 HowMany(id_list,val)
 
-#
+# Swap the first half of list (even number of elements only) with second half of list
+def Swapper(Numbers):
+    mid=len(Numbers)//2
+    for i in range(mid):
+        Numbers[i],Numbers[mid+i]=Numbers[mid+i],Numbers[i]
+    print(Numbers)
+l=eval(input('Enter list of integers (List should have even number of elements): '))
+Swapper(l)
+
+# Print count of numbers between 1 and upper limit divisible by 3 or 7
+def Count3and7(N):
+    count=0
+    for i in range(1,N+1):
+        if i%3==0 or i%7==0:
+            count+=1
+    return count
+print(Count3and7(int(input('Enter upper limit: '))))
