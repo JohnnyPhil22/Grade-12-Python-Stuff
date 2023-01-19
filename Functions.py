@@ -252,3 +252,16 @@ def AddOddEven(VALUES):
     print(f'Odd sum: {odd_sum}')
 l=eval(input('Enter list of integers: '))
 AddOddEven(l)
+
+# Display number of times ID is in list of IDs
+def HowMany(ID,Val):
+    count=0
+    for i in ID:
+        if i==Val:
+            count+=1
+    print(f'{Val} found {count} times')
+id_list=eval(input('Enter IDs in list: '))
+val=int(input('Enter ID to count: '))
+HowMany(id_list,val)
+
+#
