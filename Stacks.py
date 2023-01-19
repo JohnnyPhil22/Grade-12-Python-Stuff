@@ -555,3 +555,27 @@ while opt in 'yY':
         opt=input('Continue? ')
     if ch==3:
         opt='n'
+
+# Insert and Remove Book Titles to/from stack
+def PushOn(Book):
+    title=input("Enter book title: ")
+    Book.append(title)
+    print(f'Book title list: {Book}')
+def Pop(Book):
+    print('Popped elements:')
+    for i in range(len(Book)):
+        print(Book.pop())
+    print('Stack Empty')
+l=eval(input('Enter book titles as list: '))
+opt='y'
+while opt in 'yY':
+    print('1. Insert Book Title\n2. Remove Book Title\n3. Exit')
+    ch=int(input('Enter choice: '))
+    if ch==1:
+        PushOn(l)
+        opt=input('Continue? ')
+    if ch==2:
+        Pop(l)
+        opt=input('Continue? ')
+    if ch==3:
+        opt='n'
