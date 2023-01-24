@@ -281,3 +281,13 @@ def Count3and7(N):
             count+=1
     return count
 print(Count3and7(int(input('Enter upper limit: '))))
+
+# Method to count occurrence of IS, TO or UP together in file
+def ISTOUPCOUNT():
+    count=0
+    with open('WRITER.TXT') as f:
+        for w in f.read().split(' '):
+            if w=='IS' or w=='TO' or w=='UP':
+                count+=1
+    return count
+print(ISTOUPCOUNT())
