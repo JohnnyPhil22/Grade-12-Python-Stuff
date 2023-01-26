@@ -437,3 +437,55 @@ while opt in 'yY':
     if 0<ch>8:
         print('Please enter a number between 1 and 6')
     opt=input('Would you like to continue: ')
+
+# Menu driven program to create CSV file for book details, insert n records, search for particular author and price and display file contents
+import csv
+
+def create():
+    with open('Book.csv','w',newline='\n') as f:
+        csv.writer(f).writerow([int(input('Enter book number: ')),input('Enter book name: '),input('Enter book author: '),int(input('Enter book price: '))])
+
+def insert():
+    with open('Book.csv','a',newline='\n') as f:
+        n=int(input('Enter number of records: '))
+        for i in range(n):
+            csv.writer(f).writerow([int(input('Enter book number: ')),input('Enter book name: '),input('Enter book author: '),int(input('Enter book price: '))])
+
+def search():
+    with open('Book.csv',newline='\n') as f:
+        for row in csv.reader(f):
+            if 'Charles' in row[2]:
+                print(f'Book Number: {row[0]}, Book Name: {row[1]}')
+
+def display_50_more():
+    with open('Book.csv',newline='\n') as f:
+        for row in csv.reader(f):
+            if int(row[3])>50:
+                print(row)
+
+def display():
+    with open('Book.csv',newline='\n') as f:
+        for row in csv.reader(f):
+            print(row)
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Insert\n3. Search for books by Charles\n4. Display records with price > 50\n5. Display file contents\n6. Exit')
+    opt=int(input('Enter choice: '))
+    if opt==1:
+        create()
+        opt=input('Continue? ')
+    elif opt==2:
+        insert()
+        opt=input('Continue? ')
+    elif opt==3:
+        search()
+        opt=input('Continue? ')
+    elif opt==4:
+        display_50_more()
+        opt=input('Continue? ')
+    elif opt==5:
+        display()
+        opt=input('Continue? ')
+    elif opt==6:
+        opt='n'

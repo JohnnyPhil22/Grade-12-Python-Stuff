@@ -722,39 +722,58 @@ while condn == True:
     if x == 7:
         condn = False
 
-# Menu driven program to create CSV file for book details, insert n records, search for particular author and price and display file contents
-import csv
+# Menu driven program to create binary file to store EMPID, EMPNAME, SALARY, Insert n records, Display record, Increase salary, display file contents
+import pickle
 
 def create():
-    with open('Book.csv','w',newline='\n') as f:
-        csv.writer(f).writerow([int(input('Enter book number: ')),input('Enter book name: '),input('Enter book author: '),int(input('Enter book price: '))])
+    with open('salary.dat','wb') as f:
+        pickle.dump([input('Enter employee ID: '),input('Enter employee name: '),int(input('Enter employee salary: '))],f)
 
 def insert():
-    with open('Book.csv','a',newline='\n') as f:
-        n=int(input('Enter number of records: '))
+    n=int(input('Enter number of employees: '))
+    with open('salary.dat','ab') as f:
         for i in range(n):
-            csv.writer(f).writerow([int(input('Enter book number: ')),input('Enter book name: '),input('Enter book author: '),int(input('Enter book price: '))])
+            pickle.dump([input('Enter employee ID: '),input('Enter employee name: '),int(input('Enter employee salary: '))],f)
 
-def search():
-    with open('Book.csv',newline='\n') as f:
-        for row in csv.reader(f):
-            if 'Charles' in row[2]:
-                print(f'Book Number: {row[0]}, Book Name: {row[1]}')
+def display_particular():
+    empid_check=input('Enter employee ID for details: ')
+    with open('salary.dat','rb') as f:
+        try:
+            while True:
+                content=pickle.load(f)
+                if content[0]==empid_check:
+                    print(content)
+        except:
+            f.close()
 
-def display_50_more():
-    with open('Book.csv',newline='\n') as f:
-        for row in csv.reader(f):
-            if int(row[3])>50:
-                print(row)
+def increase_sal():
+    empid_check=input('Enter employee ID to increase salary: ')
+    l=[]
+    with open('salary.dat','rb') as f:
+        try:
+            while True:
+                content=pickle.load(f)
+                if empid_check not in content:
+                    l.append(content)
+                else:
+                    content[2]=int(content[2])+5000
+                    l.append(content)
+        except:
+            f.close()
+    with open('salary.dat','wb') as f:
+        pickle.dump(l,f)
 
 def display():
-    with open('Book.csv',newline='\n') as f:
-        for row in csv.reader(f):
-            print(row)
+    with open('salary.dat','rb') as f:
+        try:
+            while True:
+                print(pickle.load(f))
+        except:
+            f.close()
 
 opt='y'
 while opt in 'yY':
-    print('1. Create\n2. Insert\n3. Search for books by Charles\n4. Display records with price > 50\n5. Display file\n6. Exit')
+    print('1. Create\n2. Insert\n3. Display record\n4. Increase salary\n5. Display file contents\n6. Exit')
     opt=int(input('Enter choice: '))
     if opt==1:
         create()
@@ -763,10 +782,81 @@ while opt in 'yY':
         insert()
         opt=input('Continue? ')
     elif opt==3:
-        search()
+        display_particular()
         opt=input('Continue? ')
     elif opt==4:
-        display_50_more()
+        increase_sal()
+        opt=input('Continue? ')
+    elif opt==5:
+        display()
+        opt=input('Continue? ')
+    elif opt==6:
+        opt='n'
+
+# Menu driven program to create binary file to store DOCTOR ID, DOCTOR NAME, SPECIALISATION, SALARY, Insert n records, Display record, Increase salary, display file contents
+import pickle
+
+def create():
+    with open('doctor.dat','wb') as f:
+        pickle.dump([int(input('Enter doctor ID: ')),input('Enter doctor name: '),input('Enter doctor specialisation: '),int(input('Enter doctor salary: '))],f)
+
+def insert():
+    n=int(input('Enter number of employees: '))
+    with open('doctor.dat','ab') as f:
+        for i in range(n):
+            pickle.dump([int(input('Enter doctor ID: ')),input('Enter doctor name: '),input('Enter doctor specialisation: '),int(input('Enter doctor salary: '))],f)
+
+def display_particular():
+    docspec_check=input('Enter doctor specialisation for details: ')
+    with open('doctor.dat','rb') as f:
+        try:
+            while True:
+                content=pickle.load(f)
+                if content[2]==docspec_check:
+                    print(content)
+        except:
+            f.close()
+
+def increase_sal():
+    docid_check=input('Enter doctor ID to increase salary: ')
+    l=[]
+    with open('doctor.dat','rb') as f:
+        try:
+            while True:
+                content=pickle.load(f)
+                if docid_check not in content:
+                    l.append(content)
+                else:
+                    content[3]=int(content[3])+1000
+                    l.append(content)
+        except:
+            f.close()
+    with open('doctor.dat','wb') as f:
+        pickle.dump(l,f)
+
+def display():
+    with open('doctor.dat','rb') as f:
+        try:
+            while True:
+                print(pickle.load(f))
+        except:
+            f.close()
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Insert\n3. Display record\n4. Increase salary\n5. Display file contents\n6. Exit')
+    opt=int(input('Enter choice: '))
+    if opt==1:
+        create()
+        opt=input('Continue? ')
+    elif opt==2:
+        insert()
+        opt=input('Continue? ')
+    elif opt==3:
+        display_particular()
+        opt=input('Continue? ')
+    elif opt==4:
+        increase_sal()
         opt=input('Continue? ')
     elif opt==5:
         display()
