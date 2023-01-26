@@ -489,3 +489,56 @@ while opt in 'yY':
         opt=input('Continue? ')
     elif opt==6:
         opt='n'
+
+# Menu driven program to create CSV file for shoe details, insert n records, search for particular shoe brand, update show price for given shoe ID and price and display file contents
+import csv
+
+def create():
+    with open('shoes.csv','w',newline='\n') as f:
+        csv.writer(f).writerow([int(input('Enter shoe ID: ')),input('Enter shoe name: '),input('Enter shoe brand: '),input('Enter shoe type: '),int(input('Enter shoe price: '))])
+
+def insert():
+    with open('shoes.csv','a',newline='\n') as f:
+        n=int(input('Enter number of records: '))
+        for i in range(n):
+            csv.writer(f).writerow([int(input('Enter shoe ID: ')),input('Enter shoe name: '),input('Enter shoe brand: '),input('Enter shoe type: '),int(input('Enter shoe price: '))])
+
+def display_adidas():
+    with open('shoes.csv',newline='\n') as f:
+        for row in csv.reader(f):
+            if 'Adidas' in row[2]:
+                print(row)
+
+def update():
+    with open('shoes.csv','r+',newline='\n') as f:
+        for row in csv.reader(f):
+            if int(row[0])==101:
+                row[4]=int(row[4])+100
+                csv.writer(f).writerow(row)
+
+def display():
+    with open('shoes.csv',newline='\n') as f:
+        for row in csv.reader(f):
+            print(row)
+
+opt='y'
+while opt in 'yY':
+    print('1. Create\n2. Insert\n3. Display Adidas shoes\n4. Update price by 100 for ID 101\n5. Display file contents\n6. Exit')
+    opt=int(input('Enter choice: '))
+    if opt==1:
+        create()
+        opt=input('Continue? ')
+    elif opt==2:
+        insert()
+        opt=input('Continue? ')
+    elif opt==3:
+        display_adidas
+        opt=input('Continue? ')
+    elif opt==4:
+        update()
+        opt=input('Continue? ')
+    elif opt==5:
+        display()
+        opt=input('Continue? ')
+    elif opt==6:
+        opt='n'
